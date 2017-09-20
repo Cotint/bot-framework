@@ -31,6 +31,16 @@ class UserModel extends MainModel
     const STATUS_OTHER = 17;
     const STATUS_SHOW_CATEGORY = 18;
     const STATUS_LIST_PRODUCT = 19;
+    //
+    const STATUS_SHOW_PRODUCT = 20;
+    const STATUS_SHOW_CART = 21;
+    const STATUS_ADDING_TO_CART = 22;
+    const STATUS_FINAL_CONFIRM = 23;
+    const STATUS_FINAL_CONFIRM_GET_NAME = 24;
+    const STATUS_FINAL_CONFIRM_GET_PHONE = 25;
+    const STATUS_FINAL_CONFIRM_GET_ADDRESS = 26;
+    const STATUS_FINAL_CONFIRM_GET_ZIPCODE = 27;
+    const STATUS_FINISHED = 28;
 
     /**
      * @param string $userId

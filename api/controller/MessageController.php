@@ -107,4 +107,59 @@ class MessageController extends MainController
     {
         $this->messageMain()->messageOther();
     }
+
+    public function showCart()
+    {
+        $this->messageMain()->showCart();
+    }
+
+
+    public function setComment()
+    {
+        $this->messageMain()->setComment();
+    }
+    
+    public function setStar()
+    {
+        $this->messageMain()->setStar();
+    }
+
+    public function cheapest()
+    {
+        $this->messageMain()->cheapest();
+    }
+
+    public function bestSelling()
+    {
+        $this->messageMain()->bestSelling();
+    }
+
+    public function newest()
+    {
+        $this->messageMain()->newest();
+    }
+
+    public function mostPopular()
+    {
+        $this->messageMain()->mostPopular();
+    }
+
+    public function addToCart()
+    {
+        $this->messageMain()->addToCart();
+    }
+
+    public function finalSubmit()
+    {
+        $this->messageMain()->finalSubmit();
+    }
+
+    public function addAnotherProduct()
+    {
+        $this->messageMain()->addAnotherProduct();
+    }
+    public function previousStep()
+    {
+        $this->messageMain()->previousStep();
+    }
 }

@@ -64,20 +64,15 @@ function message(stdClass $request, stdClass $dispatch, Container $container, ar
  */
 function callback(stdClass $request, stdClass $dispatch, Container $container, array $setting): stdClass
 {
-    $gameShortName = $request->callback_query->game_short_name;
-    $callbackQueryData = $request->callback_query->data;
-    $callbackGame = $setting['dispatcher']['callback']['game'];
-    $callbackData = $setting['dispatcher']['callback']['data'];
-
-    /** @var \Monolog\Logger $log */
-//    $log = $container->get('logger');
-//    $log->addNotice('message', ['game_short_name' => $gameShortName]);
-
+    $data = ($request->callback_query->data);
+    $getProduct = $setting['dispatcher']['callback']['getProduct'];
+    $addToCart = $setting['dispatcher']['callback']['addToCart'];
     $dispatch->controller = 'CallbackController';
-    if ($gameShortName)
-        $dispatch->method = $callbackGame;
-    elseif ($callbackQueryData)
-        $dispatch->method = $callbackData[$callbackQueryData];
+
+    if(substr($data, -1) == 'p')
+        $dispatch->method = 'addToCart';
+    else
+        $dispatch->method = 'getProduct';
 
     return $dispatch;
 }

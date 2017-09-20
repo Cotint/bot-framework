@@ -18,4 +18,17 @@ class CallbackController extends MainController
         return $this->container->get('callbackMain');
     }
 
+    public function getProduct()
+    {
+        $this->callbackMain()->getProduct();
+    }
+        
+    public function messageOther()
+    {
+        $this->callbackMain()->messageOther();
+    }
+    
+
+    
+
 }

@@ -23,14 +23,14 @@ $setting = [
         'servername' => 'localhost',
         'dbname' => 'telegram_panel1',
         'username' => 'root',
-        'password' => '1364@1367qweR'
+        'password' => '123'
     ],
 
     # dispatch
     'dispatcher' => [
         'message' => [
             '/start' => 'start',
-            'بازگشت' => 'back',
+            'بازگشت به منوی اصلی' => 'back',
             'بازگشت به مرحله قبل' => 'backPrevious',
             'لیست برند ها' => 'listBrand',
             'انتقادات و پیشنهادات' => 'support',
@@ -46,12 +46,21 @@ $setting = [
             'قوانین و مقررات' => 'termsConditions',
             'اینستاگرام' => 'instagram',
             'تلگرام' => 'telegram',
+            'ثبت نظر' => 'setComment',
+            'ثبت امتیاز' => 'setStar',
+            'ارزان ترین' => 'cheapest',
+            'پر فروش ترین' => 'bestSelling',
+            'تازه ترین' => 'newest',
+            'محبوب ترین' => 'mostPopular',
+            'مشاهده سبد خرید' => 'showCart',
+            'اضافه کردن به سبد خرید' => 'addToCart',
+            'حذف محصول' => 'deleteProduct',
+            'افزودن محصولات' => 'addAnotherProduct',
+            'ثبت نهایی' => 'finalSubmit',
+            'گام قبل' => 'previousStep',             
         ],
         'callback' => [
-//            'game' => 'playGame',
-//            'data' => [
-//                'subscribe' => 'subscribe',
-//            ]
+            'مشاهده محصول' => 'getProduct',
         ],
         'inline' => [
 //            '' => 'gameList',

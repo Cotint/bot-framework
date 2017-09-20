@@ -27,6 +27,10 @@ $container->share('logger', function () use ($setting) {
     return $log;
 });
 
+$redis = new Predis\Client();
+$redis->connect('127.0.0.1', 6379);
+$container->share('redis', $redis);
+
 # keyboard
 $container->share('keyboard', new \main\KeyboardMain());
 
@@ -55,7 +59,7 @@ $container->share('pdo', function () use ($setting) {
     $password = $setting['pdo']['password'];
     $dbname = $setting['pdo']['dbname'];
     try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"] );
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password, [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"]);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
