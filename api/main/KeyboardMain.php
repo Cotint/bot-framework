@@ -178,7 +178,7 @@ class KeyboardMain
     {
         $keyboard = [
             [
-                ['text' => 'افزودن محصولات'],
+                ['text' => 'افزودن محصول'],
                 ['text' => 'حذف محصول']
             ],
             [
@@ -199,7 +199,7 @@ class KeyboardMain
     {
         $keyboard = [
             [
-                ['text' => 'افزودن محصولات'],
+                ['text' => 'افزودن محصول'],
                 ['text' => 'حذف محصول']
             ],
             [

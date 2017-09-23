@@ -69,26 +69,9 @@ class IO
         $encodedMarkup = json_encode($replyMarkup);
 
         if ($method == 'sendPhoto') {
-
             $photo = $this->response['photo'];
             $caption = $this->response['caption'];
-            if (is_array($photo)) {
-                if (isset($this->response['keyboard'])) {
-                    $keyboard = $this->response['keyboard'];
-                }
-                for ($i = 0; $i < count($photo); ++$i) {
-                    if (isset($this->response['keyboard'])) {
-                        $this->response['reply_markup'] = [
-                            'inline_keyboard' => [[$keyboard[$i]]],
-                        ];
-                        $encodedMarkup = json_encode($this->response['reply_markup']);
-                    }
-                    file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&photo=' . $photo[$i] . '&caption=' . $caption[$i]);
-                }
-            } else {
-                file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&photo=' . $photo . '&caption=' . $caption);
-            }
-
+            file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&photo=' . $photo . '&caption=' . $caption);
         }
         if ($method == 'sendMessage') {
             $text = $this->response['text'];
@@ -107,7 +90,7 @@ class IO
                             ];
                             $encodedMarkup = json_encode($this->response['reply_markup']);
                         }
-                        file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup  . '&text=' . $text[$i]);
+                        file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&text=' . $text[$i]);
                     }
                 } else {
                     file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&text=' . $text);

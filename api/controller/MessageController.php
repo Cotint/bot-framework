@@ -113,7 +113,11 @@ class MessageController extends MainController
         $this->messageMain()->showCart();
     }
 
-
+    public function selectProductForDelete()
+    {
+        $this->messageMain()->selectProductForDelete();
+    }
+    
     public function setComment()
     {
         $this->messageMain()->setComment();

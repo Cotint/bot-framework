@@ -21,6 +21,10 @@ class CallbackController extends MainController
     public function getProduct()
     {
         $this->callbackMain()->getProduct();
+    } 
+    public function deleteProduct()
+    {
+        $this->callbackMain()->deleteProduct();
     }
         
     public function messageOther()

@@ -64,13 +64,11 @@ function message(stdClass $request, stdClass $dispatch, Container $container, ar
  */
 function callback(stdClass $request, stdClass $dispatch, Container $container, array $setting): stdClass
 {
-    $data = ($request->callback_query->data);
-    $getProduct = $setting['dispatcher']['callback']['getProduct'];
-    $addToCart = $setting['dispatcher']['callback']['addToCart'];
+    $data = $request->callback_query->data;
     $dispatch->controller = 'CallbackController';
 
-    if(substr($data, -1) == 'p')
-        $dispatch->method = 'addToCart';
+    if(substr($data, -1) == 'd')
+        $dispatch->method = 'deleteProduct';
     else
         $dispatch->method = 'getProduct';
 
