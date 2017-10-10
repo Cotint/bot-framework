@@ -60,7 +60,7 @@ class KeyboardMain
                 ['text' => 'تلگرام']
             ],
             [
-                ['text' => 'بازگشت'],
+                ['text' => 'بازگشت به منوی اصلی'],
             ],
         ];
 
@@ -73,21 +73,25 @@ class KeyboardMain
      */
     public function listBrandBottom($brands): array
     {
-        $keyboard[] = [
-            ['text' => 'پرفروش ترین ها'],
-            ['text' => 'ارزان ترین ها'],
-        ];
-
-        $keyboard[] = [
-            ['text' => 'محبوب ترین ها'],
-            ['text' => 'تازه ترین ها'],
-        ];
-
+       
         foreach ($brands as $key => $value) {
             $keyboard[][] = ['text' => $value['bra_Name']];
         }
 
-        $keyboard[][] = ['text' => 'بازگشت'];
+        $keyboard[][] = ['text' => 'بازگشت به منوی اصلی'];
+
+        return $keyboard;
+    }
+
+    public function addToCartButton($brands): array
+    {
+        $main = [];
+        $keyboard = [];
+        foreach ($brands as $key => $value) {
+            array_push($main, ['text' => 'اضافه کردن به سبد خرید', "callback_data" => $value['pro_ID']]);
+            $temp = array_slice($main, -1);
+            array_push($keyboard, ($temp));
+        }
 
         return $keyboard;
     }
@@ -111,8 +115,7 @@ class KeyboardMain
                 ['text' => 'ثبت امتیاز'],
             ],
             [
-                ['text' => 'بازگشت'],
-                ['text' => 'بازگشت به مرحله قبل'],
+                ['text' => 'بازگشت به منوی اصلی'],
             ],
         ];
 
@@ -140,7 +143,7 @@ class KeyboardMain
         }
 
         $keyboard[] = [
-            ['text' => 'بازگشت'],
+            ['text' => 'بازگشت به منوی اصلی'],
             ['text' => 'بازگشت به مرحله قبل']
         ];
 
@@ -151,10 +154,78 @@ class KeyboardMain
     {
         $keyboard = [
             [
-                ['text' => 'بازگشت']
+                ['text' => 'بازگشت به منوی اصلی']
             ],
         ];
 
         return $keyboard;
     }
+
+    public function listProduct($product): array
+    {
+        $main = [];
+        $keyboard = [];
+        foreach ($product as $key => $value) {
+            array_push($main, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
+            $temp = array_slice($main, -1);
+            array_push($keyboard, ($temp));
+        }
+
+        return $keyboard;
+    }
+
+    public function showCartBottom(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'افزودن محصول'],
+                ['text' => 'حذف محصول']
+            ],
+            [
+                ['text' => 'مشاهده سبد خرید'],
+            ],
+            [
+                ['text' => 'ثبت نهایی'],
+            ],
+            [
+                ['text' => 'بازگشت به منوی اصلی']
+            ]
+        ];
+
+        return $keyboard;
+    }
+    
+    public function afterAddingToCart(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'افزودن محصول'],
+                ['text' => 'حذف محصول']
+            ],
+            [
+                ['text' => 'مشاهده سبد خرید'],
+            ],
+            [
+                ['text' => 'ثبت نهایی'],
+            ],
+            [
+                ['text' => 'بازگشت به منوی اصلی']
+            ]
+        ];
+
+        return $keyboard;
+    }
+
+    public function previousStepBottom(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'گام قبل'],
+            ]
+        ];
+
+        return $keyboard;
+    }
+    
+
 }

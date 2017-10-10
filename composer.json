@@ -5,6 +5,7 @@
         "monolog/monolog": "^1.21",
         "guzzlehttp/guzzle": "^6.2",
         "lcobucci/jwt": "^3.2",
-        "doctrine/orm": "*"
+        "doctrine/orm": "*",
+        "predis/predis": "^1.1"
     }
 }

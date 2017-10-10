@@ -50,6 +50,8 @@ class MessageMain extends MainMain
 
         $this->userModel()->register($userId, $firstName, $lastName);
 
+        $this->redis->del("cart" . $userId);
+        $this->redis->del("proId" . $userId);
         $chatId = $this->request->message->chat->id;
         $result = [
             'method' => 'sendMessage',
@@ -91,10 +93,11 @@ class MessageMain extends MainMain
 
     public function backPrevious()
     {
-        $userId = $userId = $this->request->message->from->id;
+        $userId = $this->request->message->from->id;
 
         $this->previousState($userId);
     }
+
 
     public function listBrand()
     {
@@ -104,7 +107,10 @@ class MessageMain extends MainMain
         $conn = $this->container->get('pdo');
 
         /** @var PDOStatement $stmt */
-        $stmt = $conn->prepare("SELECT bra_Name FROM brands");
+        $stmt = $conn->prepare("SELECT DISTINCT bra_Name, bra_ID FROM brands JOIN product ON product.pro_BraID = brands.bra_ID 
+                                JOIN proCat ON proCat.pro_ID = product.pro_ID 
+                                JOIN category ON proCat.cat_ID = category.cat_ID");
+
 
         $stmt->execute();
 
@@ -115,6 +121,7 @@ class MessageMain extends MainMain
             'chat_id' => $this->request->message->chat->id,
             'text' => 'یک گزینه را انتخاب کنید...',
             'parse_mode' => 'HTML',
+
             'reply_markup' => [
                 'keyboard' => $this->keyboard->listBrandBottom($res),
                 'resize_keyboard' => true
@@ -134,10 +141,11 @@ class MessageMain extends MainMain
         $text = $this->request->message->text;
 
         $result = [
-            'method' => 'sendPhoto',
+//            'method' => 'sendPhoto',
+            'method' => 'sendMessage',
             'chat_id' => $this->request->message->chat->id,
-            'photo' => 'http://0f08a1d8.ngrok.io/public/image/support.jpg',
-            'caption' => 'اگر انتقاد یا پیشنهادی دارید یا اضافه شدن بخش جدید به طور کامل و دقیق بیان کنید',
+//            'photo' => 'https://6de89762.ngrok.io/public/image/support.jpg',
+            'text' => 'اگر انتقاد یا پیشنهادی دارید یا اضافه شدن بخش جدید به طور کامل و دقیق بیان کنید',
             'reply_markup' => [
                 'keyboard' => $this->keyboard->back(),
                 'resize_keyboard' => true
@@ -204,7 +212,7 @@ class MessageMain extends MainMain
             ]
         ];
 
-        $userId = $userId = $this->request->message->from->id;
+        $userId = $this->request->message->from->id;
 
         $this->userModel()->setState($userId, UserModel::STATUS_CONSULT);
         $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_CONSULT, $text);
@@ -239,7 +247,7 @@ class MessageMain extends MainMain
             ]
         ];
 
-        $userId = $userId = $this->request->message->from->id;
+        $userId = $this->request->message->from->id;
 
         $requestText = $this->request->message->text;
 
@@ -263,7 +271,7 @@ class MessageMain extends MainMain
             ]
         ];
 
-        $userId = $userId = $this->request->message->from->id;
+        $userId = $this->request->message->from->id;
 
         $this->userModel()->setState($userId, UserModel::STATUS_ABOUT_BOT);
         $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_ABOUT_BOT, $text);
@@ -371,7 +379,7 @@ class MessageMain extends MainMain
             ]
         ];
 
-        $userId = $userId = $this->request->message->from->id;
+        $userId = $this->request->message->from->id;
 
         $this->userModel()->setState($userId, UserModel::STATUS_SHIPMENT_ABOUT);
 
@@ -399,7 +407,7 @@ class MessageMain extends MainMain
             ]
         ];
 
-        $userId = $userId = $this->request->message->from->id;
+        $userId = $this->request->message->from->id;
 
         $requestText = $this->request->message->text;
 
@@ -498,7 +506,7 @@ class MessageMain extends MainMain
         $conn = $this->container->get('pdo');
 
         /** @var PDOStatement $stmt */
-        $stmt = $conn->prepare("SELECT category.cat_Name FROM product 
+        $stmt = $conn->prepare("SELECT DISTINCT category.cat_Name FROM product 
 JOIN proCat ON proCat.pro_ID = product.pro_ID 
 JOIN category ON proCat.cat_ID = category.cat_ID
 JOIN brands ON brands.bra_ID = product.pro_BraID 
@@ -555,7 +563,7 @@ WHERE brands.bra_Name = :text AND category.cat_parentID = 0"
         $catId = $catRes[0]['cat_ID'];
 
         /** @var PDOStatement $stmt2 */
-        $stmt2 = $conn->prepare("SELECT category.cat_Name FROM product 
+        $stmt2 = $conn->prepare("SELECT DISTINCT category.cat_Name FROM product 
 JOIN proCat ON proCat.pro_ID = product.pro_ID 
 JOIN category ON proCat.cat_ID = category.cat_ID
 JOIN brands ON brands.bra_ID = product.pro_BraID 
@@ -585,7 +593,7 @@ WHERE brands.bra_Name = :lastBrand AND category.cat_parentID = :catId"
             ]
         ];
 
-        $userId = $userId = $this->request->message->from->id;
+        $userId = $this->request->message->from->id;
 
         $this->userModel()->setState($userId, UserModel::STATUS_SHOW_CATEGORY);
         $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_SHOW_CATEGORY, $text);
@@ -599,17 +607,32 @@ WHERE brands.bra_Name = :lastBrand AND category.cat_parentID = :catId"
 
         $userId = $userId = $this->request->message->from->id;
 
+        $conn = $this->container->get('pdo');
+
+        $stmt = $conn->prepare("SELECT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
+            JOIN proCat ON proCat.pro_ID = product.pro_ID 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE category.cat_Name = :text");
+
+        $stmt->bindParam('text', $text);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $captions = $keyboard = [];
+
+
+        foreach ($res as $key => $value) {
+            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
+            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
+        }
+
+
         $result = [
             'method' => 'sendMessage',
             'chat_id' => $this->request->message->chat->id,
-            'text' => 'یک گزینه را انتخاب کنید...',
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->listProductBottom(),
-                'resize_keyboard' => true
-            ]
+            'text' => $captions,
+            'keyboard' => $keyboard,
         ];
-
         $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
         $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
 
@@ -627,7 +650,7 @@ WHERE brands.bra_Name = :lastBrand AND category.cat_parentID = :catId"
                 'text' => 'دستور وارد شده صحیح نیست.',
             ];
 
-            $userId = $userId = $this->request->message->from->id;
+            $userId = $this->request->message->from->id;
 
             $text = $this->request->message->text;
 
@@ -656,6 +679,25 @@ WHERE brands.bra_Name = :lastBrand AND category.cat_parentID = :catId"
             case UserModel::STATUS_SHOW_CATEGORY :
                 $this->showCategory();
                 return true;
+            case UserModel::STATUS_GET_COUNT_PRODUCT :
+
+                return true;
+            case UserModel::STATUS_FINAL_CONFIRM :
+                $this->getName();
+                return true;
+            case UserModel::STATUS_FINAL_CONFIRM_GET_NAME :
+                $this->getPhone();
+                return true;
+            case UserModel::STATUS_FINAL_CONFIRM_GET_PHONE :
+                $this->getAddress();
+                return true;
+            case UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS :
+                $this->getZipCode();
+                return true;
+            case UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE :
+                $this->finished();
+                return true;
+
             default:
                 return false;
         }
@@ -669,9 +711,608 @@ WHERE brands.bra_Name = :lastBrand AND category.cat_parentID = :catId"
             case UserModel::STATUS_SHOW_BRAND :
                 $this->listBrand();
                 return true;
+            case UserModel::STATUS_SHOW_CATEGORY:
+                $this->listBrand();
+                return true;
+            case UserModel::STATUS_LIST_PRODUCT:
+                $this->showCategory();
+                return true;
+            case UserModel::STATUS_SHOW_PRODUCT:
+                $this->listBrand();
+                return true;
+
             default :
                 $this->start();
                 return true;
         }
+    }
+
+    public function showCart()
+    {
+
+        $text = $this->request->message->text;
+        $userId = $this->request->message->from->id;
+        $cart = json_decode($this->redis->get("cart" . $userId), true);
+
+        $factorText = '';
+        $counter = 1;
+        $finalPrice = 0;
+        foreach ($cart as $key => $value) {
+            $factorText .= $counter . ":" . $value['name'] . "\n" . "قیمت:" . $value['price'] . "\n" . "تعداد:" . $value['count'];
+            $factorText .= "\n";
+            $factorText .= "---------------------------------------------------------";
+            $factorText .= "\n";
+            $finalPrice += $value['price'] * $value['count'];
+            $counter++;
+        }
+        $factorText .= "\n";
+        $factorText .= "مبلغ قابل پرداخت:" . $finalPrice;
+
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => urlencode($factorText),
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->showCartBottom(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_SHOW_CART);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_SHOW_CART, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function setComment()
+    {
+
+    }
+
+    public function setStar()
+    {
+
+    }
+
+    public function addToCart()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+        $ProId = $this->redis->get("proId" . $userId);
+        $conn = $this->container->get('pdo');
+
+        $stmt = $conn->prepare("SELECT pro_Name, pro_LastPrice FROM product WHERE pro_ID =:proId");
+        $stmt->bindParam('proId', $ProId);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+
+        if ($this->redis->get("cart" . $userId) != null || $this->redis->get("cart" . $userId) != '')
+            $cart = json_decode($this->redis->get("cart" . $userId), true);
+        else
+            $cart = [];
+
+        if (!empty($cart)) {
+            $cart += [$ProId => ['count' => 1, 'price' => $res[0]['pro_LastPrice'], 'name' => $res[0]['pro_Name']]];
+        } else {
+            $cart = [$ProId => ['count' => 1, 'price' => $res[0]['pro_LastPrice'], 'name' => $res[0]['pro_Name']]];
+        }
+
+        $this->redis->set("cart" . $userId, json_encode($cart));
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $userId,
+            'text' => 'محصول شما به سبد خرید اضافه شد.',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->showCartBottom(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_ADDING_TO_CART);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_ADDING_TO_CART, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function getCount()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+        
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => 'لطفا تعداد کالا را وارد نمایید.',
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'hide_keyboard' => true,
+            ],
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_GET_COUNT_PRODUCT);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_GET_COUNT_PRODUCT, $text);
+
+        $this->io->setResponse($result);
+
+    }
+
+    public function selectProductForDelete()
+    {
+        $text = $this->request->message->text;
+        $userId = $this->request->message->from->id;
+        $cart = json_decode($this->redis->get("cart" . $userId), true);
+        $captions = $keyboard = [];
+
+        foreach ($cart as $key => $value) {
+            array_push($captions, urlencode($value['name'] . "\n" . "قیمت:" . $value['price']));
+            array_push($keyboard, ['text' => 'حذف محصول', "callback_data" => $key . "d"]); // qotation sign for converting to string
+        }
+
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => $captions,
+            'keyboard' => $keyboard,
+        ];
+        $this->userModel()->setState($userId, UserModel::STATUS_SELECT_FOR_DELETE);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_SELECT_FOR_DELETE, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function cheapest()
+    {
+
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+        $state = $this->userModel()->getState($userId);
+        $history = $this->userHistoryModel()->getLastState($userId, $state);
+        $lastCat = $history->text;
+
+        $conn = $this->container->get('pdo');
+        switch ($state) {
+            case UserModel::STATUS_SHOW_BRAND :
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
+            JOIN proCat ON proCat.pro_ID = product.pro_ID 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE brands.bra_Name = :lastCat
+            ORDER BY product.pro_LastPrice");
+                break;
+
+            default:
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
+            JOIN proCat ON proCat.pro_ID = product.pro_ID 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE category.cat_Name = :lastCat
+            ORDER BY product.pro_LastPrice ");
+                break;
+        }
+
+
+        $stmt->bindParam('lastCat', $lastCat);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $captions = $keyboard = [];
+
+        foreach ($res as $key => $value) {
+            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
+            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
+        }
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => $captions,
+            'keyboard' => $keyboard,
+        ];
+        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function bestSelling()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+        $state = $this->userModel()->getState($userId);
+        $history = $this->userHistoryModel()->getLastState($userId, $state);
+        $lastCat = $history->text;
+
+        $conn = $this->container->get('pdo');
+        switch ($state) {
+            case UserModel::STATUS_SHOW_BRAND :
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product
+            RIGHT JOIN ( SELECT productId, COUNT(*) AS num 
+            FROM orders GROUP BY productId  ORDER BY num) orederTable ON product.pro_ID = orederTable.productId
+			JOIN proCat ON proCat.pro_ID = orederTable.productId 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE brands.bra_Name = :lastCat");
+                break;
+
+            default:
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product
+            RIGHT JOIN ( SELECT productId, COUNT(*) AS num 
+            FROM orders GROUP BY productId  ORDER BY num) orederTable ON product.pro_ID = orederTable.productId
+			JOIN proCat ON proCat.pro_ID = orederTable.productId 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE category.cat_Name = :lastCat");
+                break;
+        }
+
+        $stmt->bindParam('lastCat', $lastCat);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $captions = $keyboard = [];
+
+        foreach ($res as $key => $value) {
+            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
+            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
+        }
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => $captions,
+            'keyboard' => $keyboard,
+        ];
+        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function newest()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+        $state = $this->userModel()->getState($userId);
+        $history = $this->userHistoryModel()->getLastState($userId, $state);
+        $lastCat = $history->text;
+
+        $conn = $this->container->get('pdo');
+        switch ($state) {
+            case UserModel::STATUS_SHOW_BRAND :
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
+            JOIN proCat ON proCat.pro_ID = product.pro_ID 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE brands.bra_Name = :lastCat
+            ORDER BY product.pro_ID DESC");
+                break;
+
+            default:
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
+            JOIN proCat ON proCat.pro_ID = product.pro_ID 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE category.cat_Name = :lastCat
+             ORDER BY product.pro_ID DESC");
+                break;
+        }
+
+
+        $stmt->bindParam('lastCat', $lastCat);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $captions = $keyboard = [];
+
+        foreach ($res as $key => $value) {
+            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
+            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
+        }
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => $captions,
+            'keyboard' => $keyboard,
+        ];
+        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
+
+        $this->io->setResponse($result);
+
+    }
+
+    public function mostPopular()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+        $state = $this->userModel()->getState($userId);
+        $history = $this->userHistoryModel()->getLastState($userId, $state);
+        $lastCat = $history->text;
+
+        $conn = $this->container->get('pdo');
+        switch ($state) {
+            case UserModel::STATUS_SHOW_BRAND :
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
+            JOIN proCat ON proCat.pro_ID = product.pro_ID 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE brands.bra_Name = :lastCat
+            ORDER BY product.proLikeCount DESC");
+                break;
+
+            default:
+                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
+            JOIN proCat ON proCat.pro_ID = product.pro_ID 
+            JOIN category ON proCat.cat_ID = category.cat_ID
+            JOIN brands ON brands.bra_ID = product.pro_BraID 
+            WHERE category.cat_Name = :lastCat
+           ORDER BY product.proLikeCount DESC");
+                break;
+        }
+
+
+        $stmt->bindParam('lastCat', $lastCat);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        $captions = $keyboard = [];
+
+        foreach ($res as $key => $value) {
+            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
+            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
+        }
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => $captions,
+            'keyboard' => $keyboard,
+        ];
+        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function addAnotherProduct()
+    {
+        $text = $this->request->message->text;
+        $userId = $this->request->message->from->id;
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $userId,
+            'text' => 'شما میتوانید محصولات دیگری را به سبد خود اضافه کنید!',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->mainBottom(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_START);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_START, $text);
+        $this->io->setResponse($result);
+    }
+
+    public function previousStep()
+    {
+        $userId = $this->request->message->from->id;
+        $currentState = $this->userModel()->getState($userId);
+        switch ($currentState) {
+            case UserModel::STATUS_FINAL_CONFIRM_GET_PHONE :
+                $this->getName();
+                return true;
+            case UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS :
+                $this->getPhone();
+                return true;
+            case UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE :
+                $this->getAddress();
+                return true;
+            default :
+                return false;
+        }
+
+        $this->userModel()->setState($userId, UserModel::STATUS_START);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_START, $text);
+        $this->io->setResponse($result);
+    }
+
+    public function finalSubmit()
+    {
+        $text = $this->request->message->text;
+        $userId = $this->request->message->from->id;
+        $cart = json_decode($this->redis->get("cart" . $userId), true);
+
+        $conn = $this->container->get('pdo');
+        $stmt = $conn->prepare("SELECT id FROM telegram_user WHERE telegramChatId =:telegramChatId");
+        $stmt->bindParam('telegramChatId', $userId);
+        $stmt->execute();
+        $row_count = $stmt->rowCount();
+
+        if ($row_count != 0) {
+            $res = $stmt->fetchAll();
+            $id = $res[0]['id'];
+        } else {
+            $stmt = $conn->prepare("INSERT INTO telegram_user(telegramChatId) VALUES(:telegramChatId)");
+            $stmt->bindParam('telegramChatId', $userId);
+            $stmt->execute();
+            $id = $conn->lastInsertId();
+        }
+
+        foreach ($cart as $key => $value) {
+            $stmt = $conn->prepare("INSERT INTO orders(userTelegramId, productId, price, count, approvalStatus) VALUES(
+                  :userTelegramId, :productId, :price, :count, 'ثبت شده')");
+            $stmt->bindParam('userTelegramId', $id);
+            $stmt->bindParam('productId', $key);
+            $stmt->bindParam('price', $value['price']);
+            $stmt->bindParam('count', $value['count']);
+            $stmt->execute();
+        }
+
+
+        $detText = 'لطفا نام و نام خانوادگی خودرا وارد کنید';
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => $detText,
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'hide_keyboard' => true,
+            ],
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function getName()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => 'لطفا نام و نام خانوادگی خودرا وارد کنید',
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'hide_keyboard' => true,
+            ],
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME, $text);
+
+        $this->io->setResponse($result);
+
+    }
+
+    public function getPhone()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+
+        $conn = $this->container->get('pdo');
+        $stmt = $conn->prepare("UPDATE telegram_user SET name= :name WHERE telegramChatId=:telegramChatId");
+        $stmt->bindParam('telegramChatId', $userId);
+        $stmt->bindParam('name', $text);
+        $stmt->execute();
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => 'لطفا شماره تماس خودرا وارد کنید',
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->previousStepBottom(),
+            ],
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_PHONE);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_PHONE, $text);
+
+        $this->io->setResponse($result);
+
+    }
+
+    public function getAddress()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+
+        $conn = $this->container->get('pdo');
+        $stmt = $conn->prepare("UPDATE telegram_user SET phone= :phone WHERE telegramChatId=:telegramChatId");
+        $stmt->bindParam('telegramChatId', $userId);
+        $stmt->bindParam('phone', $text);
+        $stmt->execute();
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => 'لطفا آدرس خودرا وارد کنید',
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->previousStepBottom(),
+            ],
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function getZipCode()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+
+        $conn = $this->container->get('pdo');
+        $stmt = $conn->prepare("UPDATE telegram_user SET address =:address WHERE telegramChatId=:telegramChatId");
+        $stmt->bindParam('telegramChatId', $userId);
+        $stmt->bindParam('address', $text);
+        $stmt->execute();
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => 'لطفا کدپستی خودرا وارد کنید',
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->previousStepBottom(),
+            ],
+        ];
+
+        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE, $text);
+
+        $this->io->setResponse($result);
+    }
+
+    public function finished()
+    {
+        $text = $this->request->message->text;
+        $userId = $userId = $this->request->message->from->id;
+
+        $conn = $this->container->get('pdo');
+        $stmt = $conn->prepare("UPDATE telegram_user SET zipCode= :zipCode WHERE telegramChatId=:telegramChatId");
+        $stmt->bindParam('telegramChatId', $userId);
+        $stmt->bindParam('zipCode', $text);
+        $stmt->execute();
+
+        $cart = json_decode($this->redis->get("cart" . $userId), true);
+        $factorText = '';
+        $counter = 1;
+        $finalPrice = 0;
+        foreach ($cart as $key => $value) {
+            $factorText .= $counter . ":" . $value['name'] . "\t\t" . "قیمت:" . $value['price'] . "\t\t" . "تعداد:" . $value['count'];
+            $factorText .= "\n";
+            $finalPrice += $value['price'] * $value['count'];
+            $counter++;
+        }
+        $factorText .= "\n";
+        $factorText .= "مبلغ قابل پرداخت:" . $finalPrice;
+
+        $detailsText = 'از خرید شما متشکریم :)';
+        $detailsText .= "\n\n";
+        $detailsText .= $factorText;
+        $detailsText .= "\n\n";
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $this->request->message->chat->id,
+            'text' => urlencode($detailsText),
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->mainBottom(),
+            ],
+        ];
+        $this->redis->del("cart" . $userId);
+        $this->redis->del("proId" . $userId);
+        $this->userModel()->setState($userId, UserModel::STATUS_FINISHED);
+        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINISHED, $text);
+
+        $this->io->setResponse($result);
     }
 }

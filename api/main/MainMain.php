@@ -23,6 +23,8 @@ class MainMain
     /** @var $keyboard KeyboardMain */
     public $keyboard;
 
+    public $redis;
+
     /**
      * MainMain constructor.
      * @param Container $container
@@ -34,6 +36,7 @@ class MainMain
         $this->io = $container->get('io');
         $this->request = $this->io->getRequest();
         $this->keyboard = $container->get('keyboard');
+        $this->redis = $container->get('redis');
     }
 
     /**
