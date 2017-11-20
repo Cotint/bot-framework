@@ -23,6 +23,39 @@ class MessageController extends MainController
         $this->messageMain()->start();
     }
 
+    public function help()
+    {
+        $this->messageMain()->help();
+    }
+    public function barang()
+    {
+        $this->messageMain()->barang();
+    }
+
+    public function calorie()
+    {
+        $this->messageMain()->calorie();
+    }
+    public function bmi()
+    {
+        $this->messageMain()->bmi();
+    }
+
+    public function state()
+    {
+        $this->messageMain()->state();
+    }
+
+    public function activity()
+    {
+        $this->messageMain()->activity();
+    }
+    
+    public function gender()
+    {
+        $this->messageMain()->gender();
+    }
+
     public function back()
     {
         $this->messageMain()->back();
@@ -117,12 +150,12 @@ class MessageController extends MainController
     {
         $this->messageMain()->selectProductForDelete();
     }
-    
+
     public function setComment()
     {
         $this->messageMain()->setComment();
     }
-    
+
     public function setStar()
     {
         $this->messageMain()->setStar();

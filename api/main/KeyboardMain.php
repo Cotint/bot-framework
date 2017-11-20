@@ -38,6 +38,79 @@ class KeyboardMain
         return $keyboard;
     }
 
+    /**
+     * @return array
+     */
+    public function welcomeBottom(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'محاسبه BMI'],
+                ['text' => 'بارنگ فود']
+            ],
+            [
+                ['text' => 'محاسبه کالری مورد نیاز'],
+                ['text' => 'راهنما']
+            ],
+        ];
+
+        return $keyboard;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function genderBottom(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'مرد'],
+                ['text' => 'زن']
+            ],
+        ];
+
+        return $keyboard;
+    }
+    
+    /**
+     * @return array
+     */
+    public function stateBottom(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'عادی'],
+                ['text' => 'باردار'],
+                ['text' => 'شیرده']
+            ],
+        ];
+
+        return $keyboard;
+    }
+
+    /**
+     * @return array
+     */
+    public function activityBottom(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'بدون فعالیت'],
+                ['text' => 'کم فعالیت'],
+            ],
+            [
+                ['text' => 'فعالیت متوسط'],
+                ['text' => 'فعالیت زیاد'],
+            ],
+            [
+                ['text' => 'فعالیت خیلی زیاد']
+            ],
+        ];
+
+        return $keyboard;
+    }
+
     public function aboutBotBottom(): array
     {
         $keyboard = [
@@ -73,7 +146,7 @@ class KeyboardMain
      */
     public function listBrandBottom($brands): array
     {
-       
+
         foreach ($brands as $key => $value) {
             $keyboard[][] = ['text' => $value['bra_Name']];
         }
@@ -194,7 +267,7 @@ class KeyboardMain
 
         return $keyboard;
     }
-    
+
     public function afterAddingToCart(): array
     {
         $keyboard = [
@@ -226,6 +299,6 @@ class KeyboardMain
 
         return $keyboard;
     }
-    
+
 
 }

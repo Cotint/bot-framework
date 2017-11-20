@@ -6,7 +6,6 @@
  * Time: 8:58 AM
  */
 
-
 # get container
 $container = new League\Container\Container;
 
@@ -14,8 +13,6 @@ $container = new League\Container\Container;
 /** @var $setting array */
 $container->share('settings', $setting);
 
-# mongodb
-$container->share('mongo', (new MongoDB\Client())->selectDatabase($setting['mongodb']['dbname']));
 
 # input output handler
 $container->share('io', new \service\IO());
@@ -26,10 +23,6 @@ $container->share('logger', function () use ($setting) {
     $log->pushHandler(new \Monolog\Handler\StreamHandler($setting['logger']['path'], \Monolog\Logger::DEBUG));
     return $log;
 });
-
-$redis = new Predis\Client();
-$redis->connect('127.0.0.1', 6379);
-$container->share('redis', $redis);
 
 # keyboard
 $container->share('keyboard', new \main\KeyboardMain());

@@ -11,5 +11,4 @@ namespace main;
 
 class InlineMain extends MainMain
 {
-
 }

@@ -43,30 +43,394 @@ class MessageMain extends MainMain
 
     public function start()
     {
-        $text = $this->request->message->text;
-        $userId = $this->request->message->from->id;
-        $firstName = $this->request->message->from->first_name;
-        $lastName = $this->request->message->from->last_name;
-
-        $this->userModel()->register($userId, $firstName, $lastName);
-
-        $this->redis->del("cart" . $userId);
-        $this->redis->del("proId" . $userId);
         $chatId = $this->request->message->chat->id;
         $result = [
             'method' => 'sendMessage',
             'chat_id' => $chatId,
             'text' => 'خوش آمدید.',
             'reply_markup' => [
-                'keyboard' => $this->keyboard->mainBottom(),
+                'keyboard' => $this->keyboard->welcomeBottom(),
                 'resize_keyboard' => true
             ]
         ];
 
-        $this->userModel()->setState($userId, UserModel::STATUS_START);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_START, $text);
+        $this->io->setResponse($result);
+    }
+
+
+    public function help()
+    {
+        $chatId = $this->request->message->chat->id;
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chatId,
+            'text' => 'راهنما',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->welcomeBottom(),
+                'resize_keyboard' => true
+            ]
+        ];
 
         $this->io->setResponse($result);
+    }
+
+    public function barang()
+    {
+        $chatId = $this->request->message->chat->id;
+        $text = "مجموعه بارنگ فود با هدف ارتقاء سلامتی افراد جامعه با به کار گیری اصول و قوانین حاکم بر تغذیه سالم تاسیس شده است. شرکت بارنگ در مسیر خود از مشاوره متخصصین تغذیه برتر کشور و همچنین چند تن از افراد صاحبنظر در علم آشپزی استفاده می نماید. در این شرکت روش هایی جهت پیاده سازی علم تغذیه سالم ابداع و آموزش داده می شود.
+نگاه ما به زندگی در شعار ما خلاصه می شود: ";
+        $text .= "\n";
+        $text .= "\n";
+        $text .= "Enjoy your healthy Food";
+        $text .= "\n";
+        $text .= "از غذای سالمت لذت ببر ...";
+        $text .= "\n";
+        $text .= "با ما در ارتباط باشید";
+        $text .= "\n";
+        $text .= "✅  baranagfood.com";
+        $text .= "\n";
+        $text .= "- - - - - - - - - - - - -";
+        $text .= "\n";
+        $text .= "📩  info@barangfood.com";
+        $text .= "\n";
+        $text .= "📞 021-22035976";
+        $text .= "\n";
+        $text .= "📢  @barangfood | بارنگ فود";
+
+        $text = urlencode($text);
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chatId,
+            'text' => $text,
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->welcomeBottom(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+    }
+
+    public function calorie()
+    {
+        $chatId = $this->request->message->chat->id;
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chatId,
+            'text' => 'جنسیت خود را انتخاب کنید',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->genderBottom(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+    }
+    public function bmi()
+    {
+        $chatId = $this->request->message->chat->id;
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chatId,
+            'text' => 'قد خود را به سانتی متر وارد کنید',
+            'reply_markup' => [
+                'remove_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+    }
+
+    public function gender()
+    {
+        $chatId = $this->request->message->chat->id;
+        $userId = $this->request->message->from->username;
+        if ($this->request->message->text == 'مرد') {
+            $gender = 0;
+        } else {
+            $gender = 1;
+        }
+        $setGender = $this->userModel();
+        if ($setGender->setGender($userId, $gender, $chatId)) {
+            $result = [
+                'method' => 'sendMessage',
+                'chat_id' => $chatId,
+                'text' => 'قد خود را به سانتی متر وارد کنید',
+                'reply_markup' => [
+                    'remove_keyboard' => true
+                ]
+            ];
+        } else {
+            $result = [
+                'method' => 'sendMessage',
+                'chat_id' => $chatId,
+                'text' => 'دوباره تلاش کنید.',
+                'reply_markup' => [
+                    'keyboard' => $this->keyboard->genderBottom(),
+                    'resize_keyboard' => true
+                ]
+            ];
+        }
+
+        $this->io->setResponse($result);
+    }
+
+    public function state()
+    {
+        $chatId = $this->request->message->chat->id;
+        if ($this->request->message->text == 'عادی') {
+            $state = 0;
+        } elseif ($this->request->message->text == 'باردار') {
+            $state = 1;
+        } else {
+            $state = 2;
+        }
+        $setState = $this->userModel();
+        if ($setState->setState($state, $chatId)) {
+            $result = [
+                'method' => 'sendMessage',
+                'chat_id' => $chatId,
+                'text' => 'وضعیت جسمانی خود را مشخص کنید',
+                'reply_markup' => [
+                    'keyboard' => $this->keyboard->activityBottom(),
+                    'resize_keyboard' => true
+                ]
+            ];
+        } else {
+            $result = [
+                'method' => 'sendMessage',
+                'chat_id' => $chatId,
+                'text' => 'دوباره تلاش کنید.',
+                'reply_markup' => [
+                    'keyboard' => $this->keyboard->stateBottom(),
+                    'resize_keyboard' => true
+                ]
+            ];
+        }
+
+        $this->io->setResponse($result);
+    }
+
+    public function activity()
+    {
+        $chatId = $this->request->message->chat->id;
+        $userId = $this->request->message->from->username;
+        if ($this->request->message->text == 'بدون فعالیت') {
+            $activity = 0;
+        } elseif ($this->request->message->text == 'کم فعالیت') {
+            $activity = 1;
+        } elseif ($this->request->message->text == 'فعالیت متوسط') {
+            $activity = 2;
+        } elseif ($this->request->message->text == 'فعالیت زیاد') {
+            $activity = 3;
+        } else {
+            $activity = 4;
+        }
+        $setActivity = $this->userModel();
+        if ($setActivity->setActivity($activity, $chatId)) {
+            $getUserInfo = $this->userModel();
+            $getUserInfo = $getUserInfo->getUser($chatId);
+            $getUserInfo = $getUserInfo[0];
+            if ($getUserInfo['gender'] == 0) {
+                $bmr = 66 + (13.7 * (int)$getUserInfo['weight']) + (5 * (int)$getUserInfo['height'] / 100) - (6.8 * (int)$getUserInfo['age']);
+                $text = 'MRM شما برابر ' . $bmr . 'می باشد';
+                $result = [
+                    'method' => 'sendMessage',
+                    'chat_id' => $chatId,
+                    'text' => $text,
+                    'reply_markup' => [
+                        'remove_keyboard' => true
+                    ]
+                ];
+            } else {
+                $bmr =  655 + (9.6 * (int)$getUserInfo['weight']) + (1.7 * (int)$getUserInfo['height'] / 100) - (4.7 * (int)$getUserInfo['age']);
+                $text = 'BMR شما برابر ' . $bmr . 'می باشد';
+                $result = [
+                    'method' => 'sendMessage',
+                    'chat_id' => $chatId,
+                    'text' => $text,
+                    'reply_markup' => [
+                        'remove_keyboard' => true
+                    ]
+                ];
+            }
+        } else {
+            $result = [
+                'method' => 'sendMessage',
+                'chat_id' => $chatId,
+                'text' => 'دوباره تلاش کنید.',
+                'reply_markup' => [
+                    'keyboard' => $this->keyboard->activityBottom(),
+                    'resize_keyboard' => true
+                ]
+            ];
+        }
+
+        $this->io->setResponse($result);
+    }
+
+    public function messageOther()
+    {
+        $chatId = $this->request->message->chat->id;
+        $text = $this->request->message->text;
+        if (!is_numeric($text)) {
+            $result = [
+                'method' => 'sendMessage',
+                'chat_id' => $chatId,
+                'text' => 'لطفا عدد وارد کنید.',
+                'reply_markup' => [
+                    'remove_keyboard' => true
+                ]
+            ];
+
+            $this->io->setResponse($result);
+            exit;
+        }
+        $state = $this->userModel()->getState($chatId);
+        $state = $state[0]['last_state'];
+        if (isset($state) && $state != null) {
+            switch ($state) {
+                case '1':
+                    $getBmi = $this->userModel();
+                    $getBmi = $getBmi->getState($chatId);
+                    $getBmi = $getBmi[0]['bmi'];
+                    if ($getBmi == 1){
+                        $setHeight = $this->userModel();
+                        if ($setHeight->setHeight($text, $chatId)) {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'وزن خود را به کیلوگرم وارد کنید',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        } else {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'دوباره تلاش کنید.',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        }
+                    }else{
+                        $setHeight = $this->userModel();
+                        if ($setHeight->setHeightBmi($text, $chatId,$this->request->message->from->username)) {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'وزن خود را به کیلوگرم وارد کنید',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        } else {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'دوباره تلاش کنید.',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        }
+                    }
+                    break;
+                case '2':
+                    $setWeight = $this->userModel();
+                    $getBmi = $this->userModel();
+                    $getBmi = $getBmi->getState($chatId);
+                    $getBmi = $getBmi[0]['bmi'];
+                    if ($getBmi == 1){
+                        if ($setWeight->setWeightBmi($text, $chatId)) {
+                            $getUserBmi = $this->userModel()->getUserBmi($chatId);
+                            $getUserBmi = $getUserBmi[0];
+                            $bmi = $getUserBmi['weight'] / (($getUserBmi['height']/100)*($getUserBmi['height']/100));
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'بی ام آی شما برابر '.$bmi.' میباشد',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        } else {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'دوباره تلاش کنید.',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        }
+                    }else{
+                        if ($setWeight->setWeight($text, $chatId)) {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'سن خود را وارد کنید',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        } else {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'دوباره تلاش کنید.',
+                                'reply_markup' => [
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        }
+                    }
+                    break;
+                case '3':
+                    $setAge = $this->userModel();
+                    if ($setAge->setAge($text, $chatId)) {
+                        $result = [
+                            'method' => 'sendMessage',
+                            'chat_id' => $chatId,
+                            'text' => 'وضعیت خود را وارد انتخاب کنید',
+                            'reply_markup' => [
+                                'keyboard' => $this->keyboard->stateBottom(),
+                                'resize_keyboard' => true
+                            ]
+                        ];
+                    } else {
+                        $result = [
+                            'method' => 'sendMessage',
+                            'chat_id' => $chatId,
+                            'text' => 'دوباره تلاش کنید.',
+                            'reply_markup' => [
+                                'resize_keyboard' => true
+                            ]
+                        ];
+                    }
+                    break;
+                case '6':
+                    $this->start();
+                    break;
+                default :
+                    $result = [
+                        'method' => 'sendMessage',
+                        'chat_id' => $chatId,
+                        'text' => 'دستور وارد شده صحیح نیست.',
+                        'reply_markup' => [
+                            'resize_keyboard' => true
+                        ]
+                    ];
+                    break;
+            }
+
+            $this->io->setResponse($result);
+        } else {
+            $this->start();
+        }
     }
 
     public function back()
@@ -639,130 +1003,17 @@ WHERE brands.bra_Name = :lastBrand AND category.cat_parentID = :catId"
         $this->io->setResponse($result);
     }
 
-    public function messageOther()
-    {
-        $userId = $userId = $this->request->message->from->id;
-        $checkUserState = $this->stateMessage($userId);
-        if ($checkUserState == false) {
-            $result = [
-                'method' => 'sendMessage',
-                'chat_id' => $this->request->message->chat->id,
-                'text' => 'دستور وارد شده صحیح نیست.',
-            ];
-
-            $userId = $this->request->message->from->id;
-
-            $text = $this->request->message->text;
-
-            $this->userModel()->setState($userId, UserModel::STATUS_OTHER);
-            $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_OTHER, $text);
-
-            $this->io->setResponse($result);
-        }
-    }
 
     public function stateMessage(string $userId)
     {
-        $state = $this->userModel()->getState($userId);
-
-        switch ($state) {
-            case UserModel::STATUS_SUPPORT :
-                $text = $this->request->message->text;
-                $this->supportModel()->addSupport($text, $userId);
-                return true;
-            case UserModel::STATUS_LIST_BRAND :
-                $this->showBrand();
-                return true;
-            case UserModel::STATUS_SHOW_BRAND :
-                $this->showCategory();
-                return true;
-            case UserModel::STATUS_SHOW_CATEGORY :
-                $this->showCategory();
-                return true;
-            case UserModel::STATUS_GET_COUNT_PRODUCT :
-
-                return true;
-            case UserModel::STATUS_FINAL_CONFIRM :
-                $this->getName();
-                return true;
-            case UserModel::STATUS_FINAL_CONFIRM_GET_NAME :
-                $this->getPhone();
-                return true;
-            case UserModel::STATUS_FINAL_CONFIRM_GET_PHONE :
-                $this->getAddress();
-                return true;
-            case UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS :
-                $this->getZipCode();
-                return true;
-            case UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE :
-                $this->finished();
-                return true;
-
-            default:
-                return false;
-        }
     }
 
     public function previousState(string $userId)
     {
-        $currentState = $this->userModel()->getState($userId);
-
-        switch ($currentState) {
-            case UserModel::STATUS_SHOW_BRAND :
-                $this->listBrand();
-                return true;
-            case UserModel::STATUS_SHOW_CATEGORY:
-                $this->listBrand();
-                return true;
-            case UserModel::STATUS_LIST_PRODUCT:
-                $this->showCategory();
-                return true;
-            case UserModel::STATUS_SHOW_PRODUCT:
-                $this->listBrand();
-                return true;
-
-            default :
-                $this->start();
-                return true;
-        }
     }
 
     public function showCart()
     {
-
-        $text = $this->request->message->text;
-        $userId = $this->request->message->from->id;
-        $cart = json_decode($this->redis->get("cart" . $userId), true);
-
-        $factorText = '';
-        $counter = 1;
-        $finalPrice = 0;
-        foreach ($cart as $key => $value) {
-            $factorText .= $counter . ":" . $value['name'] . "\n" . "قیمت:" . $value['price'] . "\n" . "تعداد:" . $value['count'];
-            $factorText .= "\n";
-            $factorText .= "---------------------------------------------------------";
-            $factorText .= "\n";
-            $finalPrice += $value['price'] * $value['count'];
-            $counter++;
-        }
-        $factorText .= "\n";
-        $factorText .= "مبلغ قابل پرداخت:" . $finalPrice;
-
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => urlencode($factorText),
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->showCartBottom(),
-                'resize_keyboard' => true
-            ]
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_SHOW_CART);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_SHOW_CART, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function setComment()
@@ -777,542 +1028,61 @@ WHERE brands.bra_Name = :lastBrand AND category.cat_parentID = :catId"
 
     public function addToCart()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-        $ProId = $this->redis->get("proId" . $userId);
-        $conn = $this->container->get('pdo');
-
-        $stmt = $conn->prepare("SELECT pro_Name, pro_LastPrice FROM product WHERE pro_ID =:proId");
-        $stmt->bindParam('proId', $ProId);
-        $stmt->execute();
-        $res = $stmt->fetchAll();
-
-        if ($this->redis->get("cart" . $userId) != null || $this->redis->get("cart" . $userId) != '')
-            $cart = json_decode($this->redis->get("cart" . $userId), true);
-        else
-            $cart = [];
-
-        if (!empty($cart)) {
-            $cart += [$ProId => ['count' => 1, 'price' => $res[0]['pro_LastPrice'], 'name' => $res[0]['pro_Name']]];
-        } else {
-            $cart = [$ProId => ['count' => 1, 'price' => $res[0]['pro_LastPrice'], 'name' => $res[0]['pro_Name']]];
-        }
-
-        $this->redis->set("cart" . $userId, json_encode($cart));
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $userId,
-            'text' => 'محصول شما به سبد خرید اضافه شد.',
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->showCartBottom(),
-                'resize_keyboard' => true
-            ]
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_ADDING_TO_CART);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_ADDING_TO_CART, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function getCount()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-        
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => 'لطفا تعداد کالا را وارد نمایید.',
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'hide_keyboard' => true,
-            ],
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_GET_COUNT_PRODUCT);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_GET_COUNT_PRODUCT, $text);
-
-        $this->io->setResponse($result);
-
     }
 
     public function selectProductForDelete()
     {
-        $text = $this->request->message->text;
-        $userId = $this->request->message->from->id;
-        $cart = json_decode($this->redis->get("cart" . $userId), true);
-        $captions = $keyboard = [];
-
-        foreach ($cart as $key => $value) {
-            array_push($captions, urlencode($value['name'] . "\n" . "قیمت:" . $value['price']));
-            array_push($keyboard, ['text' => 'حذف محصول', "callback_data" => $key . "d"]); // qotation sign for converting to string
-        }
-
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => $captions,
-            'keyboard' => $keyboard,
-        ];
-        $this->userModel()->setState($userId, UserModel::STATUS_SELECT_FOR_DELETE);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_SELECT_FOR_DELETE, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function cheapest()
     {
-
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-        $state = $this->userModel()->getState($userId);
-        $history = $this->userHistoryModel()->getLastState($userId, $state);
-        $lastCat = $history->text;
-
-        $conn = $this->container->get('pdo');
-        switch ($state) {
-            case UserModel::STATUS_SHOW_BRAND :
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
-            JOIN proCat ON proCat.pro_ID = product.pro_ID 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE brands.bra_Name = :lastCat
-            ORDER BY product.pro_LastPrice");
-                break;
-
-            default:
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
-            JOIN proCat ON proCat.pro_ID = product.pro_ID 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE category.cat_Name = :lastCat
-            ORDER BY product.pro_LastPrice ");
-                break;
-        }
-
-
-        $stmt->bindParam('lastCat', $lastCat);
-        $stmt->execute();
-        $res = $stmt->fetchAll();
-        $captions = $keyboard = [];
-
-        foreach ($res as $key => $value) {
-            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
-            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
-        }
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => $captions,
-            'keyboard' => $keyboard,
-        ];
-        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function bestSelling()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-        $state = $this->userModel()->getState($userId);
-        $history = $this->userHistoryModel()->getLastState($userId, $state);
-        $lastCat = $history->text;
-
-        $conn = $this->container->get('pdo');
-        switch ($state) {
-            case UserModel::STATUS_SHOW_BRAND :
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product
-            RIGHT JOIN ( SELECT productId, COUNT(*) AS num 
-            FROM orders GROUP BY productId  ORDER BY num) orederTable ON product.pro_ID = orederTable.productId
-			JOIN proCat ON proCat.pro_ID = orederTable.productId 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE brands.bra_Name = :lastCat");
-                break;
-
-            default:
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product
-            RIGHT JOIN ( SELECT productId, COUNT(*) AS num 
-            FROM orders GROUP BY productId  ORDER BY num) orederTable ON product.pro_ID = orederTable.productId
-			JOIN proCat ON proCat.pro_ID = orederTable.productId 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE category.cat_Name = :lastCat");
-                break;
-        }
-
-        $stmt->bindParam('lastCat', $lastCat);
-        $stmt->execute();
-        $res = $stmt->fetchAll();
-        $captions = $keyboard = [];
-
-        foreach ($res as $key => $value) {
-            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
-            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
-        }
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => $captions,
-            'keyboard' => $keyboard,
-        ];
-        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function newest()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-        $state = $this->userModel()->getState($userId);
-        $history = $this->userHistoryModel()->getLastState($userId, $state);
-        $lastCat = $history->text;
-
-        $conn = $this->container->get('pdo');
-        switch ($state) {
-            case UserModel::STATUS_SHOW_BRAND :
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
-            JOIN proCat ON proCat.pro_ID = product.pro_ID 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE brands.bra_Name = :lastCat
-            ORDER BY product.pro_ID DESC");
-                break;
-
-            default:
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
-            JOIN proCat ON proCat.pro_ID = product.pro_ID 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE category.cat_Name = :lastCat
-             ORDER BY product.pro_ID DESC");
-                break;
-        }
-
-
-        $stmt->bindParam('lastCat', $lastCat);
-        $stmt->execute();
-        $res = $stmt->fetchAll();
-        $captions = $keyboard = [];
-
-        foreach ($res as $key => $value) {
-            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
-            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
-        }
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => $captions,
-            'keyboard' => $keyboard,
-        ];
-        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
-
-        $this->io->setResponse($result);
-
     }
 
     public function mostPopular()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-        $state = $this->userModel()->getState($userId);
-        $history = $this->userHistoryModel()->getLastState($userId, $state);
-        $lastCat = $history->text;
-
-        $conn = $this->container->get('pdo');
-        switch ($state) {
-            case UserModel::STATUS_SHOW_BRAND :
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
-            JOIN proCat ON proCat.pro_ID = product.pro_ID 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE brands.bra_Name = :lastCat
-            ORDER BY product.proLikeCount DESC");
-                break;
-
-            default:
-                $stmt = $conn->prepare("SELECT DISTINCT product.pro_ID, product.pro_Name, product.pro_LastPrice FROM product 
-            JOIN proCat ON proCat.pro_ID = product.pro_ID 
-            JOIN category ON proCat.cat_ID = category.cat_ID
-            JOIN brands ON brands.bra_ID = product.pro_BraID 
-            WHERE category.cat_Name = :lastCat
-           ORDER BY product.proLikeCount DESC");
-                break;
-        }
-
-
-        $stmt->bindParam('lastCat', $lastCat);
-        $stmt->execute();
-        $res = $stmt->fetchAll();
-        $captions = $keyboard = [];
-
-        foreach ($res as $key => $value) {
-            array_push($captions, urlencode($value['pro_Name'] . "\n" . "قیمت:" . $value['pro_LastPrice']));
-            array_push($keyboard, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
-        }
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => $captions,
-            'keyboard' => $keyboard,
-        ];
-        $this->userModel()->setState($userId, UserModel::STATUS_LIST_PRODUCT);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_LIST_PRODUCT, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function addAnotherProduct()
     {
-        $text = $this->request->message->text;
-        $userId = $this->request->message->from->id;
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $userId,
-            'text' => 'شما میتوانید محصولات دیگری را به سبد خود اضافه کنید!',
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->mainBottom(),
-                'resize_keyboard' => true
-            ]
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_START);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_START, $text);
-        $this->io->setResponse($result);
     }
 
     public function previousStep()
     {
-        $userId = $this->request->message->from->id;
-        $currentState = $this->userModel()->getState($userId);
-        switch ($currentState) {
-            case UserModel::STATUS_FINAL_CONFIRM_GET_PHONE :
-                $this->getName();
-                return true;
-            case UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS :
-                $this->getPhone();
-                return true;
-            case UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE :
-                $this->getAddress();
-                return true;
-            default :
-                return false;
-        }
-
-        $this->userModel()->setState($userId, UserModel::STATUS_START);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_START, $text);
-        $this->io->setResponse($result);
     }
 
     public function finalSubmit()
     {
-        $text = $this->request->message->text;
-        $userId = $this->request->message->from->id;
-        $cart = json_decode($this->redis->get("cart" . $userId), true);
-
-        $conn = $this->container->get('pdo');
-        $stmt = $conn->prepare("SELECT id FROM telegram_user WHERE telegramChatId =:telegramChatId");
-        $stmt->bindParam('telegramChatId', $userId);
-        $stmt->execute();
-        $row_count = $stmt->rowCount();
-
-        if ($row_count != 0) {
-            $res = $stmt->fetchAll();
-            $id = $res[0]['id'];
-        } else {
-            $stmt = $conn->prepare("INSERT INTO telegram_user(telegramChatId) VALUES(:telegramChatId)");
-            $stmt->bindParam('telegramChatId', $userId);
-            $stmt->execute();
-            $id = $conn->lastInsertId();
-        }
-
-        foreach ($cart as $key => $value) {
-            $stmt = $conn->prepare("INSERT INTO orders(userTelegramId, productId, price, count, approvalStatus) VALUES(
-                  :userTelegramId, :productId, :price, :count, 'ثبت شده')");
-            $stmt->bindParam('userTelegramId', $id);
-            $stmt->bindParam('productId', $key);
-            $stmt->bindParam('price', $value['price']);
-            $stmt->bindParam('count', $value['count']);
-            $stmt->execute();
-        }
-
-
-        $detText = 'لطفا نام و نام خانوادگی خودرا وارد کنید';
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => $detText,
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'hide_keyboard' => true,
-            ],
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function getName()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => 'لطفا نام و نام خانوادگی خودرا وارد کنید',
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'hide_keyboard' => true,
-            ],
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_NAME, $text);
-
-        $this->io->setResponse($result);
-
     }
 
     public function getPhone()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-
-        $conn = $this->container->get('pdo');
-        $stmt = $conn->prepare("UPDATE telegram_user SET name= :name WHERE telegramChatId=:telegramChatId");
-        $stmt->bindParam('telegramChatId', $userId);
-        $stmt->bindParam('name', $text);
-        $stmt->execute();
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => 'لطفا شماره تماس خودرا وارد کنید',
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->previousStepBottom(),
-            ],
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_PHONE);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_PHONE, $text);
-
-        $this->io->setResponse($result);
-
     }
 
     public function getAddress()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-
-        $conn = $this->container->get('pdo');
-        $stmt = $conn->prepare("UPDATE telegram_user SET phone= :phone WHERE telegramChatId=:telegramChatId");
-        $stmt->bindParam('telegramChatId', $userId);
-        $stmt->bindParam('phone', $text);
-        $stmt->execute();
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => 'لطفا آدرس خودرا وارد کنید',
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->previousStepBottom(),
-            ],
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ADDRESS, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function getZipCode()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-
-        $conn = $this->container->get('pdo');
-        $stmt = $conn->prepare("UPDATE telegram_user SET address =:address WHERE telegramChatId=:telegramChatId");
-        $stmt->bindParam('telegramChatId', $userId);
-        $stmt->bindParam('address', $text);
-        $stmt->execute();
-
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => 'لطفا کدپستی خودرا وارد کنید',
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->previousStepBottom(),
-            ],
-        ];
-
-        $this->userModel()->setState($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINAL_CONFIRM_GET_ZIPCODE, $text);
-
-        $this->io->setResponse($result);
     }
 
     public function finished()
     {
-        $text = $this->request->message->text;
-        $userId = $userId = $this->request->message->from->id;
-
-        $conn = $this->container->get('pdo');
-        $stmt = $conn->prepare("UPDATE telegram_user SET zipCode= :zipCode WHERE telegramChatId=:telegramChatId");
-        $stmt->bindParam('telegramChatId', $userId);
-        $stmt->bindParam('zipCode', $text);
-        $stmt->execute();
-
-        $cart = json_decode($this->redis->get("cart" . $userId), true);
-        $factorText = '';
-        $counter = 1;
-        $finalPrice = 0;
-        foreach ($cart as $key => $value) {
-            $factorText .= $counter . ":" . $value['name'] . "\t\t" . "قیمت:" . $value['price'] . "\t\t" . "تعداد:" . $value['count'];
-            $factorText .= "\n";
-            $finalPrice += $value['price'] * $value['count'];
-            $counter++;
-        }
-        $factorText .= "\n";
-        $factorText .= "مبلغ قابل پرداخت:" . $finalPrice;
-
-        $detailsText = 'از خرید شما متشکریم :)';
-        $detailsText .= "\n\n";
-        $detailsText .= $factorText;
-        $detailsText .= "\n\n";
-        $result = [
-            'method' => 'sendMessage',
-            'chat_id' => $this->request->message->chat->id,
-            'text' => urlencode($detailsText),
-            'parse_mode' => 'HTML',
-            'reply_markup' => [
-                'keyboard' => $this->keyboard->mainBottom(),
-            ],
-        ];
-        $this->redis->del("cart" . $userId);
-        $this->redis->del("proId" . $userId);
-        $this->userModel()->setState($userId, UserModel::STATUS_FINISHED);
-        $this->userHistoryModel()->addHistory($userId, UserModel::STATUS_FINISHED, $text);
-
-        $this->io->setResponse($result);
     }
 }

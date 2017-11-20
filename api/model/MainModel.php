@@ -15,6 +15,7 @@ use MongoDB\Collection;
 class MainModel
 {
     public $container;
+    public $pdo;
 
     /**
      * MainModel constructor.
@@ -23,14 +24,6 @@ class MainModel
     public function __construct(Container $container)
     {
         $this->container = $container;
-    }
-
-    /**
-     * @param string $collection
-     * @return Collection
-     */
-    public function mongo(string $collection): Collection
-    {
-        return $this->container->get('mongo')->{$collection};
+//        $this->pdo = $this->container->get('pdo');
     }
 }

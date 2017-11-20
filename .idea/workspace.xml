@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d29fcb03-2040-42ef-b38f-9452b233457e" name="Default" comment="" />
+    <list default="true" id="d29fcb03-2040-42ef-b38f-9452b233457e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controller/MessageController.php" afterPath="$PROJECT_DIR$/api/controller/MessageController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/CallbackMain.php" afterPath="$PROJECT_DIR$/api/main/CallbackMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/InlineMain.php" afterPath="$PROJECT_DIR$/api/main/InlineMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/KeyboardMain.php" afterPath="$PROJECT_DIR$/api/main/KeyboardMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/MainMain.php" afterPath="$PROJECT_DIR$/api/main/MainMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/MessageMain.php" afterPath="$PROJECT_DIR$/api/main/MessageMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/MainModel.php" afterPath="$PROJECT_DIR$/api/model/MainModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/SupportModel.php" afterPath="$PROJECT_DIR$/api/model/SupportModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/UserHistoryModel.php" afterPath="$PROJECT_DIR$/api/model/UserHistoryModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/UserModel.php" afterPath="$PROJECT_DIR$/api/model/UserModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/service/IO.php" afterPath="$PROJECT_DIR$/api/service/IO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/debug.log" afterPath="$PROJECT_DIR$/log/debug.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dependencies.php" afterPath="$PROJECT_DIR$/src/dependencies.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/settings.php" afterPath="$PROJECT_DIR$/src/settings.php" />
+    </list>
     <ignored path="telegrambot.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -12,6 +30,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -21,31 +40,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MessageMain.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/main/MessageMain.php">
+      <file leaf-file-name="settings.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/settings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="758">
-              <caret line="582" column="46" selection-start-line="582" selection-start-column="46" selection-end-line="582" selection-end-column="46" />
-              <folding>
-                <element signature="e#6#96#0#PHP" expanded="true" />
-                <element signature="e#116#155#0#PHP" expanded="true" />
-                <marker date="1498709984487" expanded="true" signature="2756:2783" ph="SELECT bra_N... brands" />
-                <marker date="1498709984487" expanded="true" signature="16451:16665" ph="SELECT categ... product" />
-                <marker date="1498709984487" expanded="true" signature="16451:16695" ph="SELECT categ... product" />
-                <marker date="1498709984487" expanded="true" signature="17933:17986" ph="SELECT cat_I... category" />
-                <marker date="1498709984487" expanded="true" signature="18214:18462" ph="SELECT categ... product" />
-                <marker date="1498709984487" expanded="true" signature="18214:18468" ph="SELECT categ... product" />
-              </folding>
+            <state relative-caret-position="459">
+              <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IO.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/service/IO.php">
+      <file leaf-file-name="MessageMain.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/main/MessageMain.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
-              <folding />
+            <state relative-caret-position="408">
+              <caret line="361" column="58" selection-start-line="361" selection-start-column="58" selection-end-line="361" selection-end-column="58" />
+              <folding>
+                <element signature="e#6#96#0#PHP" expanded="true" />
+                <element signature="e#116#155#0#PHP" expanded="true" />
+                <element signature="e#15539#16217#0#PHP" expanded="false" />
+                <element signature="e#16223#16358#0#PHP" expanded="false" />
+                <element signature="e#19598#20364#0#PHP" expanded="false" />
+                <element signature="e#20370#21534#0#PHP" expanded="false" />
+                <element signature="e#21540#22226#0#PHP" expanded="false" />
+                <element signature="e#22232#23204#0#PHP" expanded="false" />
+                <element signature="e#23210#24313#0#PHP" expanded="false" />
+                <element signature="e#24319#25300#0#PHP" expanded="false" />
+                <element signature="e#25306#26296#0#PHP" expanded="false" />
+                <marker date="1511189472277" expanded="true" signature="16605:16860" ph="SELECT DISTI... brands" />
+                <marker date="1511189472277" expanded="true" signature="30521:30774" ph="SELECT DISTI... product" />
+                <marker date="1511189472277" expanded="true" signature="32012:32065" ph="SELECT cat_I... category" />
+                <marker date="1511189472277" expanded="true" signature="32293:32556" ph="SELECT DISTI... product" />
+                <marker date="1511189472277" expanded="true" signature="33713:34015" ph="SELECT produ... product" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -53,8 +80,53 @@
       <file leaf-file-name="KeyboardMain.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/main/KeyboardMain.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="110" column="41" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
+            <state relative-caret-position="714">
+              <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/model/UserModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="986">
+              <caret line="63" column="109" selection-start-line="63" selection-start-column="109" selection-end-line="63" selection-end-column="109" />
+              <folding>
+                <marker date="1511189218836" expanded="true" signature="291:425" ph="INSERT INTO `user`... " />
+                <marker date="1511189218836" expanded="true" signature="291:529" ph="INSERT INTO `user`... " />
+                <marker date="1511189218836" expanded="true" signature="291:545" ph="INSERT INTO `user`... " />
+                <marker date="1511189218836" expanded="true" signature="814:1121" ph="INSERT INTO `user`... " />
+                <marker date="1511189218836" expanded="true" signature="1215:1339" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="1538:1568" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="1538:1602" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="1538:1621" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="1538:1661" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="1538:1662" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="1847:1971" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="2261:2456" ph="INSERT INTO `user`... " />
+                <marker date="1511189218836" expanded="true" signature="2261:2573" ph="INSERT INTO `user`... " />
+                <marker date="1511189218836" expanded="true" signature="2667:2800" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="3002:3138" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="3317:3435" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="3618:3740" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="3929:4057" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="4231:4269" ph="SELECT * FRO... user" />
+                <marker date="1511189218836" expanded="true" signature="4231:4270" ph="UPDATE `user... " />
+                <marker date="1511189218836" expanded="true" signature="4495:4549" ph="SELECT * FRO... user" />
+                <marker date="1511189218836" expanded="true" signature="4773:4825" ph="SELECT * FRO... user" />
+                <marker date="1511189218836" expanded="true" signature="4773:4836" ph="SELECT * FRO... user" />
+                <marker date="1511189218836" expanded="true" signature="4773:4837" ph="SELECT * FRO... user" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/controller/MessageController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -62,31 +134,35 @@
       </file>
     </leaf>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/api/main/CallbackMain.php" />
-        <option value="$PROJECT_DIR$/api/main/InlineMain.php" />
         <option value="$PROJECT_DIR$/api/controller/CallbackController.php" />
         <option value="$PROJECT_DIR$/api/controller/InlineController.php" />
         <option value="$PROJECT_DIR$/log/debug.log" />
-        <option value="$PROJECT_DIR$/src/dispatcher.php" />
         <option value="$PROJECT_DIR$/api/index.php" />
         <option value="$PROJECT_DIR$/../telegram/my_project_name/web/app_dev.php" />
         <option value="$PROJECT_DIR$/../telegram/my_project_name/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/../telegram/index.php" />
         <option value="$PROJECT_DIR$/api/model/UserHistory.php" />
-        <option value="$PROJECT_DIR$/api/model/SupportModel.php" />
-        <option value="$PROJECT_DIR$/api/service/IO.php" />
-        <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/api/model/BrandsModel.php" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/api/main/MainMain.php" />
+        <option value="$PROJECT_DIR$/src/dispatcher.php" />
+        <option value="$PROJECT_DIR$/api/service/IO.php" />
+        <option value="$PROJECT_DIR$/api/model/SupportModel.php" />
+        <option value="$PROJECT_DIR$/api/model/UserHistoryModel.php" />
+        <option value="$PROJECT_DIR$/api/main/InlineMain.php" />
+        <option value="$PROJECT_DIR$/api/main/CallbackMain.php" />
         <option value="$PROJECT_DIR$/src/dependencies.php" />
+        <option value="$PROJECT_DIR$/api/model/MainModel.php" />
         <option value="$PROJECT_DIR$/src/settings.php" />
         <option value="$PROJECT_DIR$/api/controller/MessageController.php" />
-        <option value="$PROJECT_DIR$/api/model/MainModel.php" />
-        <option value="$PROJECT_DIR$/api/model/UserModel.php" />
-        <option value="$PROJECT_DIR$/api/model/UserHistoryModel.php" />
         <option value="$PROJECT_DIR$/api/main/KeyboardMain.php" />
+        <option value="$PROJECT_DIR$/api/model/UserModel.php" />
         <option value="$PROJECT_DIR$/api/main/MessageMain.php" />
       </list>
     </option>
@@ -99,9 +175,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.0.9" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="24" />
-    <option name="width" value="1301" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -129,34 +205,116 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="master" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="master" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="telegrambot" />
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="master" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="api" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../telegrambot (2)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
@@ -167,9 +325,6 @@
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -197,19 +352,6 @@
       <scripts />
       <node-interpreter value="project" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
       <method />
     </configuration>
   </component>
@@ -242,23 +384,25 @@
       <workItem from="1498646751375" duration="1526000" />
       <workItem from="1498704390112" duration="2793000" />
       <workItem from="1500013268065" duration="50000" />
+      <workItem from="1511159126952" duration="18020000" />
+      <workItem from="1511189549340" duration="51000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="128426000" />
+    <option name="totallyTimeSpent" value="146497000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36573705" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17700455" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3287037" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -266,7 +410,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -334,7 +478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -395,31 +538,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/main/InlineMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/main/CallbackMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding>
-            <element signature="e#7#97#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_c.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/controller/InlineController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -427,121 +545,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/autoload.php" />
     <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/docs/getting-started.md" />
-    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="75">
-            <caret line="5" column="39" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="39" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/composer.json" />
+    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/LICENSE" />
+    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/README.md" />
     <entry file="file://$PROJECT_DIR$/../telegram/indexx.php" />
-    <entry file="file://$PROJECT_DIR$/../telegram/my_project_name/web/app_dev.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../telegram/my_project_name/src/AppBundle/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../telegram/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../telegrambot (2)/api/main/MainMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../telegrambot (2)/api/main/KeyboardMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1616">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/main/MainMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controller/MainController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/src/Client.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="208" column="20" selection-start-line="208" selection-start-column="20" selection-end-line="208" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/league/container/src/Container.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="81" column="20" selection-start-line="81" selection-start-column="20" selection-end-line="81" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../telegram/my_project_name/web/app_dev.php" />
+    <entry file="file://$PROJECT_DIR$/../telegram/my_project_name/src/AppBundle/Controller/DefaultController.php" />
+    <entry file="file://$PROJECT_DIR$/../telegram/index.php" />
+    <entry file="file://$PROJECT_DIR$/../telegrambot (2)/api/main/MainMain.php" />
+    <entry file="file://$PROJECT_DIR$/../telegrambot (2)/api/main/KeyboardMain.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/mongodb/mongodb/src/Client.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/league/container/src/Container.php" />
     <entry file="file://$PROJECT_DIR$/src/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dispatcher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-471">
-          <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -552,104 +572,181 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/model/BrandsModel.php" />
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_c.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="289">
+          <caret line="22" column="33" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/model/BrandsModel.php" />
-    <entry file="file://$PROJECT_DIR$/src/dependencies.php">
+    <entry file="file://$PROJECT_DIR$/api/service/IO.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/settings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/model/MainModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="-35">
+          <caret line="64" column="66" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/model/SupportModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="e#6#94#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controller/MessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/model/UserModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
-          <folding>
-            <element signature="e#6#94#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/model/UserHistoryModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding>
-            <element signature="e#6#94#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/service/IO.php">
+    <entry file="file://$PROJECT_DIR$/api/controller/MainController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
+        <state relative-caret-position="170">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main/InlineMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="25" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dependencies.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="42" column="43" selection-start-line="42" selection-start-column="43" selection-end-line="42" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main/CallbackMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/model/MainModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dispatcher.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="52" column="48" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main/MainMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="32" column="23" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controller/MessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/main/KeyboardMain.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1575">
-          <caret line="110" column="41" selection-start-line="110" selection-start-column="41" selection-end-line="110" selection-end-column="41" />
+        <state relative-caret-position="714">
+          <caret line="47" column="38" selection-start-line="47" selection-start-column="38" selection-end-line="47" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/model/UserModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="63" column="109" selection-start-line="63" selection-start-column="109" selection-end-line="63" selection-end-column="109" />
+          <folding>
+            <marker date="1511189218836" expanded="true" signature="291:425" ph="INSERT INTO `user`... " />
+            <marker date="1511189218836" expanded="true" signature="291:529" ph="INSERT INTO `user`... " />
+            <marker date="1511189218836" expanded="true" signature="291:545" ph="INSERT INTO `user`... " />
+            <marker date="1511189218836" expanded="true" signature="814:1121" ph="INSERT INTO `user`... " />
+            <marker date="1511189218836" expanded="true" signature="1215:1339" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="1538:1568" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="1538:1602" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="1538:1621" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="1538:1661" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="1538:1662" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="1847:1971" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="2261:2456" ph="INSERT INTO `user`... " />
+            <marker date="1511189218836" expanded="true" signature="2261:2573" ph="INSERT INTO `user`... " />
+            <marker date="1511189218836" expanded="true" signature="2667:2800" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="3002:3138" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="3317:3435" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="3618:3740" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="3929:4057" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="4231:4269" ph="SELECT * FRO... user" />
+            <marker date="1511189218836" expanded="true" signature="4231:4270" ph="UPDATE `user... " />
+            <marker date="1511189218836" expanded="true" signature="4495:4549" ph="SELECT * FRO... user" />
+            <marker date="1511189218836" expanded="true" signature="4773:4825" ph="SELECT * FRO... user" />
+            <marker date="1511189218836" expanded="true" signature="4773:4836" ph="SELECT * FRO... user" />
+            <marker date="1511189218836" expanded="true" signature="4773:4837" ph="SELECT * FRO... user" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/main/MessageMain.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="758">
-          <caret line="582" column="46" selection-start-line="582" selection-start-column="46" selection-end-line="582" selection-end-column="46" />
+        <state relative-caret-position="408">
+          <caret line="361" column="58" selection-start-line="361" selection-start-column="58" selection-end-line="361" selection-end-column="58" />
           <folding>
             <element signature="e#6#96#0#PHP" expanded="true" />
             <element signature="e#116#155#0#PHP" expanded="true" />
-            <marker date="1498709984487" expanded="true" signature="2756:2783" ph="SELECT bra_N... brands" />
-            <marker date="1498709984487" expanded="true" signature="16451:16665" ph="SELECT categ... product" />
-            <marker date="1498709984487" expanded="true" signature="16451:16695" ph="SELECT categ... product" />
-            <marker date="1498709984487" expanded="true" signature="17933:17986" ph="SELECT cat_I... category" />
-            <marker date="1498709984487" expanded="true" signature="18214:18462" ph="SELECT categ... product" />
-            <marker date="1498709984487" expanded="true" signature="18214:18468" ph="SELECT categ... product" />
+            <element signature="e#15539#16217#0#PHP" expanded="false" />
+            <element signature="e#16223#16358#0#PHP" expanded="false" />
+            <element signature="e#19598#20364#0#PHP" expanded="false" />
+            <element signature="e#20370#21534#0#PHP" expanded="false" />
+            <element signature="e#21540#22226#0#PHP" expanded="false" />
+            <element signature="e#22232#23204#0#PHP" expanded="false" />
+            <element signature="e#23210#24313#0#PHP" expanded="false" />
+            <element signature="e#24319#25300#0#PHP" expanded="false" />
+            <element signature="e#25306#26296#0#PHP" expanded="false" />
+            <marker date="1511189472277" expanded="true" signature="16605:16860" ph="SELECT DISTI... brands" />
+            <marker date="1511189472277" expanded="true" signature="30521:30774" ph="SELECT DISTI... product" />
+            <marker date="1511189472277" expanded="true" signature="32012:32065" ph="SELECT cat_I... category" />
+            <marker date="1511189472277" expanded="true" signature="32293:32556" ph="SELECT DISTI... product" />
+            <marker date="1511189472277" expanded="true" signature="33713:34015" ph="SELECT produ... product" />
           </folding>
         </state>
       </provider>

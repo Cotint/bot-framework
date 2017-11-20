@@ -11,113 +11,122 @@ namespace model;
 
 class UserModel extends MainModel
 {
-    const STATUS_START = 0;
-    const STATUS_BACK = 1;
-    const STATUS_SUPPORT = 2;
-    const STATUS_INVITE = 3;
-    const STATUS_LIST_BRAND = 4;
-    const STATUS_CONSULT = 5;
-    const STATUS_SHOPKET_ADS = 6;
-    const STATUS_ABOUT_BOT = 7;
-    const STATUS_ABOUT = 8;
-    const STATUS_CONTACT = 9;
-    const STATUS_BUY_INFO = 10;
-    const STATUS_SHIPMENT_ABOUT = 11;
-    const STATUS_REFUND_ABOUT = 12;
-    const STATUS_TERMS_CONDITIONS = 13;
-    const STATUS_INSTAGRAM = 14;
-    const STATUS_TELEGRAM = 15;
-    const STATUS_SHOW_BRAND = 16;
-    const STATUS_OTHER = 17;
-    const STATUS_SHOW_CATEGORY = 18;
-    const STATUS_LIST_PRODUCT = 19;
-    //
-    const STATUS_SHOW_PRODUCT = 20;
-    const STATUS_SHOW_CART = 21;
-    const STATUS_ADDING_TO_CART = 22;
-    const STATUS_GET_COUNT_PRODUCT = 23;
-    const STATUS_SELECT_FOR_DELETE = 24;
-    const STATUS_DELETE_PRODUCT = 25;
-    const STATUS_FINAL_CONFIRM = 26;
-    const STATUS_FINAL_CONFIRM_GET_NAME = 27;
-    const STATUS_FINAL_CONFIRM_GET_PHONE = 28;
-    const STATUS_FINAL_CONFIRM_GET_ADDRESS = 29;
-    const STATUS_FINAL_CONFIRM_GET_ZIPCODE = 30;
-    const STATUS_FINISHED = 31;
 
-    /**
-     * @param string $userId
-     * @param string $firstName
-     * @param $lastName
-     */
-    public function register(string $userId, string $firstName, $lastName)
+    public function setHistory($userId, $field, $count)
     {
-        $lastName = $lastName ?? '';
-        $userExist = $this->findUserById($userId);
-        if (is_null($userExist))
-        {
-            $username = $this->generateUniqueUsername($firstName);
-            $this->mongo('user')->insertOne([
-                '_id' => $userId,
-                'profile'=> [
-                    'first_name' => $firstName,
-                    'last_Name' => $lastName,
-                    'username' => $username,
-                ],
-                'laststate' => UserModel::STATUS_START
-            ]);
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("INSERT INTO `user` (`id`, `gender`, `height`, `weight`, `age`, `state`, `activity`, `last_state`, `chat_id`, `create_at`, `update_at`)" .
+            " VALUES (NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, 'chat_id', CURRENT_TIMESTAMP, '" . time() . "');");
+        $stmt->execute();
+    }
+
+    public function setGender($userId, $gender, $chatId)
+    {
+        $pdo = $this->container->get('pdo');
+
+        $user = $this->getUser($chatId);
+        if (!isset($user) || $user == null) {
+            $stmt = $pdo->prepare("INSERT INTO `user` (`id`, `gender`, `height`, `weight`, `age`, `state`, `activity`, `last_state`, `chat_id`, `create_at`, `update_at`, `user_id`)" .
+                " VALUES (NULL, '" . $gender . "', NULL, NULL, NULL, NULL, NULL, 1, '" . $chatId . "', CURRENT_TIMESTAMP, '" . time() . "', '" . $userId . "');");
+            return $stmt->execute();
+        } else {
+            $stmt = $pdo->prepare("UPDATE `user` SET `gender` = '" . $gender . "', `last_state` = '1', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+            return $stmt->execute();
         }
     }
 
-    /**
-     * @param string $userId
-     * @return array|null|object
-     */
-    public function findUserById(string $userId)
+    public function setHeight($height, $chatId)
     {
-        return $this->mongo('user')->findOne(['_id' => $userId]);
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("UPDATE `user` SET `height` = '" . $height . "', `last_state` = '2', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+        return $stmt->execute();
     }
 
-    /**
-     * @param string $firstName
-     * @return string
-     */
-    private function generateUniqueUsername(string $firstName): string
+    public function setWeight($weight, $chatId)
     {
-        $flag = true;
-        $username = $firstName;
-        while ($flag)
-        {
-            $userDocument = $this->findByUsername($username);
-            if (is_null($userDocument))
-                $flag = false;
-            else
-                $username = $firstName . mt_rand(1000, 9999);
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '3', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+        return $stmt->execute();
+    }
+
+    public function setHeightBmi($height, $chatId, $userId)
+    {
+        $pdo = $this->container->get('pdo');
+        $user = $this->getUserBmi($chatId);
+        if (!isset($user) || $user == null) {
+            $stmt = $pdo->prepare("INSERT INTO `user` (`id`, `gender`, `height`, `weight`, `age`, `state`, `activity`, `last_state`, `chat_id`, `create_at`, `update_at`, `user_id`, `bmi`)" .
+                " VALUES (NULL, Null, '".$height."', NULL, NULL, NULL, NULL, 2, '" . $chatId . "', CURRENT_TIMESTAMP, '" . time() . "', '" . $userId . "',1);");
+            return $stmt->execute();
+        } else {
+            $stmt = $pdo->prepare("UPDATE `user` SET `bmi` = '1', `height` = '".$height."', `last_state` = '2', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+            return $stmt->execute();
         }
-        return $username;
     }
 
-    /**
-     * @param string $userName
-     * @return array|null|object
-     */
-    public function findByUsername(string $userName)
+    public function setWeightBmi($weight, $chatId)
     {
-        return $this->mongo('user')->findOne(['profile.username' => $userName]);
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '3', `update_at` = '" . time() . "' WHERE `bmi`=1 AND `user`.`chat_id` = " . $chatId);
+        return $stmt->execute();
     }
 
-    public function setState(string $userId, $state)
+    public function setAge($age, $chatId)
     {
-        $updateResult = $this->mongo('user')->updateOne(
-            ['_id' => $userId],
-            ['$set' => ['laststate' => $state]]
-        );
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("UPDATE `user` SET `age` = '" . $age . "', `last_state` = '4', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+        return $stmt->execute();
     }
 
-    public function getState(string $userId)
+    public function setState($state, $chatId)
     {
-        $user = $this->mongo('user')->findOne(['_id' => $userId]);
+        $pdo = $this->container->get('pdo');
 
-        return $user->laststate;
+        $stmt = $pdo->prepare("UPDATE `user` SET `state` = '" . $state . "', `last_state` = '5', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+        return $stmt->execute();
+    }
+
+    public function setActivity($activity, $chatId)
+    {
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("UPDATE `user` SET `activity` = '" . $activity . "', `last_state` = '6', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+        return $stmt->execute();
+    }
+
+    public function getUser($chatId)
+    {
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("SELECT * FROM `user` WHERE `chat_id` = " . $chatId);
+        $stmt->execute();
+
+        $res = $stmt->fetchAll();
+        return $res;
+    }
+    public function getUserBmi($chatId)
+    {
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("SELECT * FROM `user` WHERE  `bmi` = 1 AND `chat_id` = " . $chatId);
+        $stmt->execute();
+
+        $res = $stmt->fetchAll();
+        return $res;
+    }
+
+    public function getState($chatId)
+    {
+        $pdo = $this->container->get('pdo');
+
+        $stmt = $pdo->prepare("SELECT last_state,bmi FROM `user` WHERE `chat_id` = " . $chatId);
+        $stmt->execute();
+
+        $res = $stmt->fetchAll();
+        return $res;
     }
 }

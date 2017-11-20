@@ -13,59 +13,38 @@ $setting = [
         'path' => '../log/debug.log',
     ],
 
-    # mongo
-    'mongodb' => [
-        'host' => 'mongodb://localhost:27017',
-            'dbname' => 'cotintpro',
-    ],
 
     'pdo' => [
         'servername' => 'localhost',
-        'dbname' => 'telegram_panel1',
+        'dbname' => 'barangbot',
         'username' => 'root',
-        'password' => '123'
+        'password' => ''
     ],
 
     # dispatch
     'dispatcher' => [
         'message' => [
             '/start' => 'start',
-            'بازگشت به منوی اصلی' => 'back',
-            'بازگشت به مرحله قبل' => 'backPrevious',
-            'لیست برند ها' => 'listBrand',
-            'انتقادات و پیشنهادات' => 'support',
-            'معرفی به دوستان' => 'invite',
-            'مشاوره رایگان' => 'consult',
-            'تبلیغ شاپکت' => 'shopketAds',
-            'معرفی ربات' => 'aboutBot',
-            'درباره ما' => 'about',
-            'ارتباط با ما' => 'contact',
-            'نحوه خرید' => 'buyInfo',
-            'شرایط ارسال' => 'shipmentAbout',
-            'شرایط استرداد' => 'refundAbout',
-            'قوانین و مقررات' => 'termsConditions',
-            'اینستاگرام' => 'instagram',
-            'تلگرام' => 'telegram',
-            'ثبت نظر' => 'setComment',
-            'ثبت امتیاز' => 'setStar',
-            'ارزان ترین ها' => 'cheapest',
-            'پرفروش ترین ها' => 'bestSelling',
-            'تازه ترین ها' => 'newest',
-            'محبوب ترین ها' => 'mostPopular',
-            'مشاهده سبد خرید' => 'showCart',
-            'اضافه کردن به سبد خرید' => 'addToCart',
-            'حذف محصول' => 'selectProductForDelete',
-            'افزودن محصول' => 'addAnotherProduct',
-            'ثبت نهایی' => 'finalSubmit',
-            'گام قبل' => 'previousStep',             
+            'زن' => 'gender',
+            'وضعیت' => 'state',
+            'فعالیت روزانه' => 'activity',
+            'بارنگ فود' => 'barang',
+            'محاسبه کالری مورد نیاز' => 'calorie',
+            'محاسبه BMI' => 'bmi',
+            'مرد' => 'gender',
+            'عادی' => 'state',
+            'باردار' => 'state',
+            'شیرده' => 'state',
+            'بدون فعالیت' => 'activity',
+            'کم فعالیت' => 'activity',
+            'فعالیت متوسط' => 'activity',
+            'فعالیت زیاد' => 'activity',
+            'فعالیت خیلی زیاد' => 'activity',
+            'راهنما' => 'help'
         ],
         'callback' => [
-            'مشاهده محصول' => 'getProduct',
-            'حذف محصول' => 'deleteProduct',
         ],
         'inline' => [
-//            '' => 'gameList',
-//            'invite' => 'invite'
         ]
     ],
 ];

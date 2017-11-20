@@ -62,7 +62,7 @@ class IO
             $chatId = $this->request->message->chat->id;
 
 
-        $botToken = "336990963:AAEP_0yZ9bQm2-G9C3qGwftwWK2OtbfGXXo";
+        $botToken = "352648200:AAH3AgcNeQSKDRkByDLuO2Ah4UsRktXY9o8";
         $web = "https://api.telegram.org/bot" . $botToken;
         $method = $this->response['method'];
         $replyMarkup = $this->response['reply_markup'];

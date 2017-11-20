@@ -11,11 +11,4 @@ namespace model;
 
 class SupportModel extends MainModel
 {
-    public function addSupport(string $text, string $userId)
-    {
-        $this->mongo('support')->insertOne([
-            'text' => $text,
-            'user_id' => $userId
-        ]);
-    }
 }
