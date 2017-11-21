@@ -40,6 +40,10 @@ class MessageController extends MainController
     {
         $this->messageMain()->bmi();
     }
+    public function backHome()
+    {
+        $this->messageMain()->backHome();
+    }
 
     public function state()
     {
