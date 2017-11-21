@@ -55,7 +55,7 @@ class UserModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("UPDATE `user` SET `height` = '" . $height . "', `last_state` = '2', `update_at` = '" . time() . "' WHERE `bmi`=0 AND `user`.`chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("UPDATE `user` SET `height` = '" . $height . "', `last_state` = '2', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
         return $stmt->execute();
     }
 
@@ -63,7 +63,7 @@ class UserModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '3', `update_at` = '" . time() . "' WHERE `bmi`=0 AND `user`.`chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '3', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
         return $stmt->execute();
     }
 
@@ -80,7 +80,7 @@ class UserModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '9', `update_at` = '" . time() . "' WHERE `bmi`=1 AND `user`.`chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '9', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
         return $stmt->execute();
     }
 
@@ -88,7 +88,7 @@ class UserModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("UPDATE `user` SET `age` = '" . $age . "', `last_state` = '4', `update_at` = '" . time() . "' WHERE `bmi`=0 AND `user`.`chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("UPDATE `user` SET `age` = '" . $age . "', `last_state` = '4', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
         return $stmt->execute();
     }
 
@@ -96,7 +96,7 @@ class UserModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("UPDATE `user` SET `state` = '" . $state . "', `last_state` = '5', `update_at` = '" . time() . "' WHERE `bmi`=0 AND `user`.`chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("UPDATE `user` SET `state` = '" . $state . "', `last_state` = '5', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
         return $stmt->execute();
     }
 
@@ -104,7 +104,7 @@ class UserModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("UPDATE `user` SET `activity` = '" . $activity . "', `last_state` = '6', `update_at` = '" . time() . "' WHERE `bmi`=0 AND `user`.`chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("UPDATE `user` SET `activity` = '" . $activity . "', `last_state` = '6', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
         return $stmt->execute();
     }
 
