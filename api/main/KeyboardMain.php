@@ -125,35 +125,6 @@ class KeyboardMain
         return $keyboard;
     }
 
-    public function aboutBotBottom(): array
-    {
-        $keyboard = [
-            [
-                ['text' => 'درباره ما'],
-                ['text' => 'ارتباط با ما']
-            ],
-            [
-                ['text' => 'نحوه خرید'],
-            ],
-            [
-                ['text' => 'شرایط ارسال'],
-                ['text' => 'شرایط استرداد']
-            ],
-            [
-                ['text' => 'قوانین و مقررات']
-            ],
-            [
-                ['text' => 'اینستاگرام'],
-                ['text' => 'تلگرام']
-            ],
-            [
-                ['text' => 'بازگشت به منوی اصلی'],
-            ],
-        ];
-
-        return $keyboard;
-    }
-
     /**
      * @param $brands
      * @return array

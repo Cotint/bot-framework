@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d29fcb03-2040-42ef-b38f-9452b233457e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controller/MessageController.php" afterPath="$PROJECT_DIR$/api/controller/MessageController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/MessageMain.php" afterPath="$PROJECT_DIR$/api/main/MessageMain.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/debug.log" afterPath="$PROJECT_DIR$/log/debug.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/KeyboardMain.php" afterPath="$PROJECT_DIR$/api/main/KeyboardMain.php" />
     </list>
     <ignored path="telegrambot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +29,7 @@
       <file leaf-file-name="settings.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/settings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="374">
               <caret line="27" column="13" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="13" />
               <folding />
             </state>
@@ -39,7 +39,7 @@
       <file leaf-file-name="MessageMain.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/main/MessageMain.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1161">
+            <state relative-caret-position="13787">
               <caret line="816" column="3" selection-start-line="816" selection-start-column="3" selection-end-line="816" selection-end-column="3" />
               <folding>
                 <element signature="e#6#96#0#PHP" expanded="true" />
@@ -51,11 +51,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KeyboardMain.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="KeyboardMain.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/main/KeyboardMain.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="67" column="37" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="28" />
+            <state relative-caret-position="17">
+              <caret line="125" column="5" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -64,7 +74,7 @@
       <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/model/UserModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
+            <state relative-caret-position="1156">
               <caret line="73" column="90" selection-start-line="73" selection-start-column="80" selection-end-line="73" selection-end-column="90" />
               <folding>
                 <marker date="1511250681837" expanded="true" signature="291:425" ph="INSERT INTO `user`... " />
@@ -96,10 +106,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/controller/MessageController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="302">
+            <state relative-caret-position="303">
               <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
               <folding />
             </state>
@@ -135,9 +145,10 @@
         <option value="$PROJECT_DIR$/api/model/MainModel.php" />
         <option value="$PROJECT_DIR$/api/model/UserModel.php" />
         <option value="$PROJECT_DIR$/src/settings.php" />
-        <option value="$PROJECT_DIR$/api/main/KeyboardMain.php" />
         <option value="$PROJECT_DIR$/api/main/MessageMain.php" />
         <option value="$PROJECT_DIR$/api/controller/MessageController.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/api/main/KeyboardMain.php" />
       </list>
     </option>
   </component>
@@ -182,6 +193,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -214,84 +226,15 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="master" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="api" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../barangBot" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
@@ -366,18 +309,19 @@
       <workItem from="1500013268065" duration="50000" />
       <workItem from="1511159126952" duration="18020000" />
       <workItem from="1511189549340" duration="93000" />
-      <workItem from="1511240601674" duration="14456000" />
+      <workItem from="1511240601674" duration="14552000" />
+      <workItem from="1511267507236" duration="133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160995000" />
+    <option name="totallyTimeSpent" value="161224000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17927383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18154311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -412,13 +356,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/service/IO.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/settings.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -572,7 +509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-35">
           <caret line="64" column="66" selection-start-line="64" selection-start-column="66" selection-end-line="64" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -631,7 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -646,29 +581,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="374">
           <caret line="27" column="13" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/main/KeyboardMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="67" column="37" selection-start-line="67" selection-start-column="37" selection-end-line="67" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/main/MessageMain.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1161">
+        <state relative-caret-position="13787">
           <caret line="816" column="3" selection-start-line="816" selection-start-column="3" selection-end-line="816" selection-end-column="3" />
           <folding>
             <element signature="e#6#96#0#PHP" expanded="true" />
@@ -681,7 +607,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/model/UserModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
+        <state relative-caret-position="1156">
           <caret line="73" column="90" selection-start-line="73" selection-start-column="80" selection-end-line="73" selection-end-column="90" />
           <folding>
             <marker date="1511250681837" expanded="true" signature="291:425" ph="INSERT INTO `user`... " />
@@ -714,8 +640,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controller/MessageController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="302">
+        <state relative-caret-position="303">
           <caret line="61" column="4" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main/KeyboardMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="125" column="5" selection-start-line="125" selection-start-column="5" selection-end-line="125" selection-end-column="5" />
           <folding />
         </state>
       </provider>
