@@ -18,21 +18,18 @@ class CallbackController extends MainController
         return $this->container->get('callbackMain');
     }
 
-    public function getProduct()
+    public function getShops()
     {
-        $this->callbackMain()->getProduct();
-    } 
-    public function deleteProduct()
-    {
-        $this->callbackMain()->deleteProduct();
-    }
-        
-    public function messageOther()
-    {
-        $this->callbackMain()->messageOther();
-    }
-    
+        $request = $this->container->get('io')->getRequest();
 
-    
+
+       $request->callback_query->data;
+
+        $category_id=end(explode('-',$request->callback_query->data));
+
+
+        $this->callbackMain()->getShops($category_id);
+    } 
+
 
 }

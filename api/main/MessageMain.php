@@ -8,12 +8,14 @@
 
 namespace main;
 
-
 use Doctrine\DBAL\Driver\PDOConnection;
 use Doctrine\DBAL\Driver\PDOStatement;
-use model\SupportModel;
-use model\UserHistoryModel;
 use model\UserModel;
+use model\ShopModel;
+use model\ZoneModel;
+use model\NewsModel;
+use model\ContactModel;
+use model\CategoryModel;
 
 class MessageMain extends MainMain
 {
@@ -28,28 +30,66 @@ class MessageMain extends MainMain
     /**
      * @return SupportModel
      */
-    private function supportModel(): SupportModel
+    private function zoneModel(): ZoneModel
     {
-        return $this->container->get('supportModel');
+        return $this->container->get('zoneModel');
     }
 
     /**
-     * @return UserHistoryModel
+     * @return SupportModel
      */
-    private function userHistoryModel(): UserHistoryModel
+    private function shopModel(): ShopModel
     {
-        return $this->container->get('userHistoryModel');
+        return $this->container->get('shopModel');
     }
+
+    /**
+     * @return SupportModel
+     */
+    private function categoryModel(): CategoryModel
+    {
+        return $this->container->get('categoryModel');
+    }
+
+    private function newsModel(): NewsModel
+    {
+        return $this->container->get('newsModel');
+    }
+
+    private function contactModel(): ContactModel
+    {
+        return $this->container->get('contactModel');
+    }
+
 
     public function start()
     {
-        $chatId = $this->request->message->chat->id;
+        $chat_id = $this->request->message->chat->id;
+
+        $userModel = $this->userModel();
+
+        $userModel->createOrUpdate($this->request->message);
+
+        $content = "سلام خوش آمدید ";
+        $content .= "\n";
+        $content .= "ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ ـ";
+        $content .= "\n";
+        $content .= " متن آزمایشی";
+        $content .= "\n";
+        $content .= "\n";
+        $content .= "\n";
+        $content .= "✅  dev.tnl.ir";
+        $content .= "📞 021-22035976";
+        $content .= "\n";
+        $content .= "📢  @barangfood | لینک کانال";
+
         $result = [
             'method' => 'sendMessage',
-            'chat_id' => $chatId,
-            'text' => 'خوش آمدید.',
+            'chat_id' => $chat_id,
+            'text' =>  urlencode($content),
+            'parse_mode' => 'HTML',
             'reply_markup' => [
-                'keyboard' => $this->keyboard->welcomeBottom(),
+                'keyboard' => $this->keyboard->welcomeButtons(),
                 'resize_keyboard' => true
             ]
         ];
@@ -57,6 +97,366 @@ class MessageMain extends MainMain
         $this->io->setResponse($result);
     }
 
+    public function getShops()
+    {
+
+        $shopModel = $this->shopModel();
+
+        $cities = $shopModel->cities();
+
+        $chatId = $this->request->message->chat->id;
+
+        $content='';
+
+        foreach ($cities as $city){
+            $content .='#'.$city['name'].' با '.$city['shops_count'].' فروشگاه '."\n";
+
+        }
+
+        $userModel = $this->userModel();
+
+        $userModel->setState($chatId,'city');
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chatId,
+            'text' => 'لطفا شهر مورد نظر خود را انتخاب کنید',
+            'reply_markup' => [
+                'inline_keyboard' => $this->keyboard->listCities($cities),
+            ]
+        ];
+
+        $this->io->setResponse($result);
+    }
+
+    public function getCategories()
+    {
+
+        $categoryModel = $this->categoryModel();
+
+        $categories = $categoryModel->all();
+
+
+        $chatId = $this->request->message->chat->id;
+
+        $userModel = $this->userModel();
+        $userModel->setState($chatId,'category');
+
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chatId,
+            'text' => 'دسته بندی محصولات',
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->categories($categories),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+    }
+
+    public function getNews()
+    {
+
+        $newsModel = $this->newsModel();
+
+        $allNews = $newsModel->all();
+
+        $chatId = $this->request->message->chat->id;
+
+
+
+        foreach ($allNews as $news){
+            $content='';
+
+            $content .=$news['description']."\n\n";
+            $content .=$news['description']."\n\n";
+            $content .='<a href="'.$news['image_link'].'">&#160;</a>';
+
+
+            $result = [
+                'method' => 'sendMessage',
+                'chat_id' => $chatId,
+                'text' =>  urlencode($content),
+                'parse_mode' => 'HTML',
+                'reply_markup' => [
+
+                        'keyboard' => $this->keyboard->backButton(),
+                        'resize_keyboard' => true
+
+
+                ]
+            ];
+
+            $this->io->setResponse($result);
+        }
+
+    }
+
+    public function contact()
+    {
+
+        $contactModel = $this->contactModel();
+
+        $info = $contactModel->all();
+
+        $chat_id = $this->request->message->chat->id;
+
+        $content = "تماس با ما";
+        $content .= "\n";
+        $content .= "\n";
+        $content .= "تلفن: ".$info['CONTACT_PHONE']."\n";
+        $content .= "ایمیل: ".$info['CONTACT_MAIL']."\n";
+        $content .= "تلفن پشتیبانی: ".$info['PHONE_SUPPORT']."\n";
+        $content .= "ساعات کاری: "."\n";
+        $content .= $info['CONTACT_WORKING_HOURS']."\n";
+        $content .= "آدرس: "."\n";
+        $content .= $info['CONTACT_ADDRESS']."\n";
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chat_id,
+            'text' =>  urlencode($content),
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->welcomeButtons(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+
+    }
+
+    public function about()
+    {
+        $chat_id = $this->request->message->chat->id;
+
+        $content = "شرکت توسعه ونوآوری لوتوس از سال1391 کار خود را در زمینه فروشگاه های زنجیره ای با نام تجاری تونل آغاز کرد. مجموعه تونل فعالیت خود را با شعار \"تونل میانبری با صرفه\" و با هدف توزیع گسترده کالا های اساسی وفروش مستقیم و بدون واسطه در شمال کشور عزیزمان آغاز و با سرعت در اقصی نقاط کشور گسترش داده و در حال حاضر33 فروشگاه فعال در سراسر کشور در حال خدمات رسانی به مشتریان این مجموعه می باشند، ولی این پایان کار نیست و مجموعه همواره در حال رشد، توسعه، و کار آفرینی است و توقف معنایی ندارد. ";
+
+        $content .= "\n";
+        $content .= "✅  dev.tnl.ir"."\n";
+        $content .= "📞 021-22035976"."\n";
+        $content .= "📢  @barangfood | لینک کانال";
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chat_id,
+            'text' =>  urlencode($content),
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->welcomeButtons(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+
+    }
+
+    public function home(){
+
+        $chat_id = $this->request->message->chat->id;
+
+        $userModel = $this->userModel();
+
+        $userModel->setState('0',$chat_id);
+
+
+        $content  = "یکی از گزینه ها رو انتخاب کنید ";
+        $content .= "\n";
+        $content .= "\n";
+        $content .= "\n";
+        $content .= "✅  dev.tnl.ir";
+        $content .= "📞 021-22035976";
+        $content .= "\n";
+        $content .= "📢  @barangfood | لینک کانال";
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chat_id,
+            'text' =>  urlencode($content),
+            'parse_mode' => 'HTML',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->welcomeButtons(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+    }
+
+
+    public function askCity()
+    {
+        $chatId = $this->request->message->chat->id;
+
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' => $chatId,
+            'text' => 'شهر مورد نظر خود را انتخاب کنید',
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->backButton(),
+                'resize_keyboard' => true
+            ]
+        ];
+
+        $this->io->setResponse($result);
+    }
+
+    public function messageOther()
+    {
+        $chatId = $this->request->message->chat->id;
+        $text = $this->request->message->text;
+
+
+
+            $state = $this->userModel()->getState($chatId);
+
+                switch ($state) {
+                    case 'city':
+
+                        $zoneModel = $this->zoneModel();
+                        $shopModel = $this->shopModel();
+
+                        if ($zoneModel->hasShop($text)) {
+
+                            $shops = $shopModel->findByName($text);
+
+
+                            foreach ($shops as $shop){
+                                $content='';
+
+                                $content .='فروشگاه '.'#'.$shop['name']."\n";
+                                $content .='آدرس: '.$shop['address']."\n";
+                                $content .='<a href="'.$shop['image_link'].'">&#160;</a>';
+                                $content .='🗺'.'مشاهده در نقشه: '.$shopModel->mapLink($shop['latlng'])."\n\n";
+
+
+                                $result = [
+                                    'method' => 'sendMessage',
+                                    'chat_id' => $chatId,
+                                    'text' =>  urlencode($content),
+                                    'parse_mode' => 'HTML',
+                                    'reply_markup' => [
+                                        'inline_keyboard' => [
+                                            [
+                                                ['text' => "📢 ورود به کانال بارنگ فود", 'url' => 't.me/barangfood']
+                                            ]
+                                        ],
+                                        'keyboard' => $this->keyboard->enterCityOrBack(),
+                                        'resize_keyboard' => true
+                                    ]
+                                ];
+
+                                $this->io->setResponse($result);
+                            }
+
+                        } else {
+
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'هیچ فروشگاهی پیدا نشد!',
+                                'reply_markup' => [
+                                    'keyboard' => $this->keyboard->backBottom(),
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                            $this->io->setResponse($result);
+
+                        }
+                        break;
+                    case 'category':
+
+                        $categoryModel = $this->categoryModel();
+
+
+                        if ($categoryModel->hasProduct($text)) {
+
+                            $products = $categoryModel->getProducts($text);
+
+
+                            foreach ($products as $product){
+                                $content='';
+
+                                $content .='محصول '.'#'.$product['name']."\n";
+                                $content .='<a href="'.$product['image_link'].'">&#160;</a>';
+
+                                $result = [
+                                    'method' => 'sendMessage',
+                                    'chat_id' => $chatId,
+                                    'text' =>  urlencode($content),
+                                    'parse_mode' => 'HTML',
+                                    'reply_markup' => [
+                                        'keyboard' => $this->keyboard->categories($categoryModel->all()),
+                                        'resize_keyboard' => true
+                                    ]
+                                ];
+
+                                $this->io->setResponse($result);
+                            }
+
+                        } else {
+
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'هیچ محصولی پیدا نشد!',
+                                'reply_markup' => [
+                                    'keyboard' => $this->keyboard->categories($categoryModel->all()),
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                            $this->io->setResponse($result);
+
+                        }
+
+
+                        break;
+                    case '3':
+                        $setAge = $this->userModel();
+                        if ($setAge->setAge($text, $chatId)) {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'وضعیت خود را وارد انتخاب کنید',
+                                'reply_markup' => [
+                                    'keyboard' => $this->keyboard->stateBottom(),
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        } else {
+                            $result = [
+                                'method' => 'sendMessage',
+                                'chat_id' => $chatId,
+                                'text' => 'دوباره تلاش کنید.',
+                                'reply_markup' => [
+                                    'keyboard' => $this->keyboard->backButton(),
+                                    'resize_keyboard' => true
+                                ]
+                            ];
+                        }
+                        break;
+
+                    default :
+                        $result = [
+                            'method' => 'sendMessage',
+                            'chat_id' => $chatId,
+                            'text' => 'دستور وارد شده صحیح نیست.',
+                            'reply_markup' => [
+                                'keyboard' => $this->keyboard->backButton(),
+                                'resize_keyboard' => true
+                            ]
+                        ];
+                        break;
+                }
+
+    }
+
+    /****/
 
     public function help()
     {
@@ -159,14 +559,14 @@ class MessageMain extends MainMain
 
         $this->io->setResponse($result);
     }
-    public function backHome(){
-        return $this->start();
-    }
+
     public function bmi()
     {
         $chatId = $this->request->message->chat->id;
         $userId = $this->request->message->from->username;
+
         $setBmi = $this->userModel()->setBmi($userId, $chatId);
+
         $result = [
             'method' => 'sendMessage',
             'chat_id' => $chatId,
@@ -459,206 +859,6 @@ class MessageMain extends MainMain
         $this->io->setResponse($result);
     }
 
-    public function messageOther()
-    {
-        $chatId = $this->request->message->chat->id;
-        $text = $this->request->message->text;
-        if (!preg_match('/^[1-9][0-9]*$/', $text)) {
-            $result = [
-                'method' => 'sendMessage',
-                'chat_id' => $chatId,
-                'text' => 'داده وارد شده غیر مجاز میباشد دوباره تلاش کنید',
-                'reply_markup' => [
-                    'keyboard' => $this->keyboard->backBottom(),
-                    'resize_keyboard' => true
-                ]
-            ];
-
-            $this->io->setResponse($result);
-        } else {
-            $state = $this->userModel()->getState($chatId);
-            $state = $state[0]['last_state'];
-            if (isset($state) && $state != null) {
-                switch ($state) {
-                    case '1':
-                        $setHeight = $this->userModel();
-                        if ($setHeight->setHeight($text, $chatId)) {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'وزن خود را به کیلوگرم وارد کنید:',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        } else {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'دوباره تلاش کنید.',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        }
-                        break;
-                    case '2':
-                        $setWeight = $this->userModel();
-                        if ($setWeight->setWeight($text, $chatId)) {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'سن خود را وارد کنید:',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        } else {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'دوباره تلاش کنید.',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        }
-                        break;
-                    case '3':
-                        $setAge = $this->userModel();
-                        if ($setAge->setAge($text, $chatId)) {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'وضعیت خود را وارد انتخاب کنید',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->stateBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        } else {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'دوباره تلاش کنید.',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        }
-                        break;
-                    case '6':
-                        return $this->start();
-                        break;
-                    case '7':
-                        $setHeight = $this->userModel();
-                        if ($setHeight->setHeightBmi($text, $chatId)) {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'وزن خود را به کیلوگرم وارد کنید:',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        } else {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'دوباره تلاش کنید.',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        }
-                        break;
-                    case '8':
-                        $setWeight = $this->userModel();
-                        if ($setWeight->setWeightBmi($text, $chatId)) {
-                            $getUserBmi = $this->userModel()->getUserBmi($chatId);
-                            $getUserBmi = $getUserBmi[0];
-                            $height2 = (($getUserBmi['height'] / 100) * ($getUserBmi['height'] / 100));
-                            $bmi = $getUserBmi['weight'] / $height2;
-                            $bestWeight = $height2 * 23;
-                            if ($bmi < 16.5) {
-                                $bmiMessage = 'شما دچار کمبود وزن شدید هستید';
-                            } elseif (16.5 <= $bmi && $bmi < 18.5) {
-                                $bmiMessage = 'شما دچار کمبود وزن هستید';
-                            } elseif (18.5 <= $bmi && $bmi < 25) {
-                                $bmiMessage = 'وزن شما عادی می باشد';
-                            } elseif (25 <= $bmi && $bmi < 30) {
-                                $bmiMessage = 'شما دچار اضافه وزن هستید';
-                            } elseif (30 <= $bmi && $bmi < 35) {
-                                $bmiMessage = 'شما دچار چاقی کلاس یک هستید';
-                            } elseif (35 <= $bmi && $bmi < 40) {
-                                $bmiMessage = 'شما دچار چاقی کلاس دو هستید';
-                            } elseif (40 <= $bmi) {
-                                $bmiMessage = 'شما دچار چاقی کلاس سه هستید';
-                            }
-                            $text = "⭕️ بی ام آی شما برابر " . round($bmi) . " میباشد";
-                            $text .= "\n";
-                            $text .= "\n";
-                            $text .= '🚹 '.$bmiMessage . " ،";
-                            $text .= "وزن ایده آل برای شما " . number_format($bestWeight, 2) . " کیلوگرم میباشد";
-                            $text .= "\n";
-                            $text .= "برای دریافت بشقاب های سلامت به لینک زیر مراجعه نمایید.";
-                            $text .= "\n";
-                            $text .= "✅  baranagfood.com";
-
-                            $text = urlencode($text);
-
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => $text,
-                                'parse_mode' => 'HTML',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        } else {
-                            $result = [
-                                'method' => 'sendMessage',
-                                'chat_id' => $chatId,
-                                'text' => 'دوباره تلاش کنید.',
-                                'reply_markup' => [
-                                    'keyboard' => $this->keyboard->backBottom(),
-                                    'resize_keyboard' => true
-                                ]
-                            ];
-                        }
-                        break;
-                    case '9':
-                        return $this->start();
-                        break;
-                    default :
-                        $result = [
-                            'method' => 'sendMessage',
-                            'chat_id' => $chatId,
-                            'text' => 'دستور وارد شده صحیح نیست.',
-                            'reply_markup' => [
-                                'keyboard' => $this->keyboard->backBottom(),
-                                'resize_keyboard' => true
-                            ]
-                        ];
-                        break;
-                }
-
-                $this->io->setResponse($result);
-            } else {
-                $this->start();
-            }
-        }
-    }
-
     public function back()
     {
         $text = $this->request->message->text;
@@ -687,7 +887,6 @@ class MessageMain extends MainMain
 
         $this->previousState($userId);
     }
-
 
     public function listBrand()
     {

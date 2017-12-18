@@ -23,26 +23,42 @@ class MessageController extends MainController
         $this->messageMain()->start();
     }
 
+    public function shops(){
+        $this->messageMain()->getShops();
+    }
+
+    public function categories(){
+        $this->messageMain()->getCategories();
+    }
+
+    public function news()
+    {
+        $this->messageMain()->getNews();
+    }
+
     public function help()
     {
         $this->messageMain()->help();
     }
-    public function barang()
+
+    public function askCity()
     {
-        $this->messageMain()->barang();
+        $this->messageMain()->askCity();
     }
 
-    public function calorie()
+    public function contact()
     {
-        $this->messageMain()->calorie();
+        $this->messageMain()->contact();
     }
-    public function bmi()
+
+    public function about()
     {
-        $this->messageMain()->bmi();
+        $this->messageMain()->about();
     }
-    public function backHome()
+
+    public function home()
     {
-        $this->messageMain()->backHome();
+        $this->messageMain()->home();
     }
 
     public function state()
@@ -50,22 +66,9 @@ class MessageController extends MainController
         $this->messageMain()->state();
     }
 
-    public function activity()
+
+    public function messageOther()
     {
-        $this->messageMain()->activity();
-    }
-    
-    public function gender()
-    {
-        $this->messageMain()->gender();
-    }
-    
-    public function addAnotherProduct()
-    {
-        $this->messageMain()->addAnotherProduct();
-    }
-    public function previousStep()
-    {
-        $this->messageMain()->previousStep();
+        $this->messageMain()->messageOther();
     }
 }

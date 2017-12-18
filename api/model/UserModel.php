@@ -12,92 +12,82 @@ namespace model;
 class UserModel extends MainModel
 {
 
-    public function setHistory($userId, $field, $count)
+    public function createOrUpdate($request)
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("INSERT INTO `user` (`id`, `gender`, `height`, `weight`, `age`, `state`, `activity`, `last_state`, `chat_id`, `create_at`, `update_at`)" .
-            " VALUES (NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL, 'chat_id', CURRENT_TIMESTAMP, '" . time() . "');");
-        $stmt->execute();
-    }
+        $user = $this->getUser($request->from->id);
 
-    public function setBmi($userId, $chatId)
-    {
-        $pdo = $this->container->get('pdo');
-
-        $user = $this->getUser($chatId);
         if (!isset($user) || $user == null) {
-            $stmt = $pdo->prepare("INSERT INTO `user` (`id`, `gender`, `height`, `weight`, `age`, `state`, `activity`, `last_state`, `chat_id`, `create_at`, `update_at`, `user_id`,`bmi`)" .
-                " VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 7, '" . $chatId . "', CURRENT_TIMESTAMP, '" . time() . "', '" . $userId . "', 1);");
-            return $stmt->execute();
+
+            $user['user_id']=$request->from->id;
+            $user['first_name']=$request->from->first_name;
+            $user['last_name']=$request->from->last_name;
+            $user['username']=$request->from->username;
+            $user['chat_id']=$request->chat->id;
+            $user['created_at']=time();
+            $user['updated_at']=time();
+
+            $stmt = $pdo->prepare("INSERT INTO user_history (user_id, first_name, last_name,username,chat_id,created_at,updated_at) VALUES (:user_id, :first_name, :last_name,:username,:chat_id,:created_at,:updated_at)");
+            $stmt->execute([
+                'user_id' =>$user['user_id'],
+                'first_name' =>$user['first_name'],
+                'last_name' =>$user['last_name'],
+                'username' =>$user['username'],
+                'chat_id' =>$user['chat_id'],
+                'created_at'=>$user['created_at'],
+                'updated_at'=>$user['updated_at']
+            ]);
+
+
         } else {
-            $stmt = $pdo->prepare("UPDATE `user` SET `last_state` = '7',`bmi` ='1', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
-            return $stmt->execute();
+
+            $user['user_id']=$request->from->id;
+            $user['first_name']=$request->from->first_name;
+            $user['last_name']=$request->from->last_name;
+            $user['username']=$request->from->username;
+            $user['chat_id']=trim($request->chat->id);
+
+
+            $last_state=0;
+
+            $sql = "UPDATE user_history SET
+            last_state = :last_state, 
+            updated_at = :updated_at, 
+            chat_id = :chat_id  
+            WHERE user_id = :user_id";
+
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->bindParam(':last_state', $last_state);
+            $stmt->bindParam(':updated_at', time());
+            $stmt->bindParam(':chat_id', $user['chat_id']);
+            $stmt->bindParam(':user_id', $user['user_id']);
+            $stmt->execute();
         }
+
     }
 
-    public function setGender($userId, $gender, $chatId)
+
+    public function setState($chatId,$state)
     {
         $pdo = $this->container->get('pdo');
 
-        $user = $this->getUser($chatId);
-        if (!isset($user) || $user == null) {
-            $stmt = $pdo->prepare("INSERT INTO `user` (`id`, `gender`, `height`, `weight`, `age`, `state`, `activity`, `last_state`, `chat_id`, `create_at`, `update_at`, `user_id`)" .
-                " VALUES (NULL, '" . $gender . "', NULL, NULL, NULL, NULL, NULL, 1, '" . $chatId . "', CURRENT_TIMESTAMP, '" . time() . "', '" . $userId . "');");
-            return $stmt->execute();
-        } else {
-            $stmt = $pdo->prepare("UPDATE `user` SET `gender` = '" . $gender . "', `last_state` = '1', `bmi`='0', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
-            return $stmt->execute();
-        }
-    }
 
-    public function setHeight($height, $chatId)
-    {
-        $pdo = $this->container->get('pdo');
+        $sql = "UPDATE user_history SET
+            last_state = :last_state, 
+            updated_at = :updated_at, 
+            chat_id = :chat_id  
+            WHERE chat_id = :chat_id";
 
-        $stmt = $pdo->prepare("UPDATE `user` SET `height` = '" . $height . "', `last_state` = '2', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->bindParam(':last_state', $state);
+        $stmt->bindParam(':updated_at', time());
+        $stmt->bindParam(':chat_id',$chatId);
+
         return $stmt->execute();
-    }
 
-    public function setWeight($weight, $chatId)
-    {
-        $pdo = $this->container->get('pdo');
-
-        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '3', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
-        return $stmt->execute();
-    }
-
-    public function setHeightBmi($height, $chatId)
-    {
-        $pdo = $this->container->get('pdo');
-
-        $stmt = $pdo->prepare("UPDATE `user` SET `height` = '" . $height . "', `last_state` = '8',`bmi`='1', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
-        return $stmt->execute();
-        
-    }
-
-    public function setWeightBmi($weight, $chatId)
-    {
-        $pdo = $this->container->get('pdo');
-
-        $stmt = $pdo->prepare("UPDATE `user` SET `weight` = '" . $weight . "', `last_state` = '9', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
-        return $stmt->execute();
-    }
-
-    public function setAge($age, $chatId)
-    {
-        $pdo = $this->container->get('pdo');
-
-        $stmt = $pdo->prepare("UPDATE `user` SET `age` = '" . $age . "', `last_state` = '4', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
-        return $stmt->execute();
-    }
-
-    public function setState($state, $chatId)
-    {
-        $pdo = $this->container->get('pdo');
-
-        $stmt = $pdo->prepare("UPDATE `user` SET `state` = '" . $state . "', `last_state` = '5', `update_at` = '" . time() . "' WHERE `user`.`chat_id` = " . $chatId);
-        return $stmt->execute();
     }
 
     public function setActivity($activity, $chatId)
@@ -108,11 +98,11 @@ class UserModel extends MainModel
         return $stmt->execute();
     }
 
-    public function getUser($chatId)
+    public function getUser($user_id)
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT * FROM `user` WHERE `chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("SELECT * FROM `user_history` WHERE `user_id` = " . $user_id);
         $stmt->execute();
 
         $res = $stmt->fetchAll();
@@ -134,10 +124,11 @@ class UserModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT last_state,bmi FROM `user` WHERE `chat_id` = " . $chatId);
+        $stmt = $pdo->prepare("SELECT last_state FROM `user_history` WHERE `chat_id` = " . $chatId);
         $stmt->execute();
 
-        $res = $stmt->fetchAll();
-        return $res;
+        $result = $stmt->fetchAll();
+
+        return $result[0]['last_state'];
     }
 }

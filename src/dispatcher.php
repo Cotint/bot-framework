@@ -13,6 +13,8 @@ use League\Container\Container;
 $io = $container->get('io');
 $request = $io->getRequest();
 
+
+
 # log
 /** @var \Monolog\Logger $log */
 $log = $container->get('logger');
@@ -67,10 +69,16 @@ function callback(stdClass $request, stdClass $dispatch, Container $container, a
     $data = $request->callback_query->data;
     $dispatch->controller = 'CallbackController';
 
-    if(substr($data, -1) == 'd')
-        $dispatch->method = 'deleteProduct';
-    else
-        $dispatch->method = 'getProduct';
+    $method=array_shift(explode('-',$data));
+
+
+    // $dispatch->method = 'getShops';
+
+    $callbackData = $setting['dispatcher']['callback']['data'];
+
+
+    $dispatch->method = $callbackData[$method];
+
 
     return $dispatch;
 }

@@ -41,17 +41,17 @@ class KeyboardMain
     /**
      * @return array
      */
-    public function welcomeBottom(): array
+    public function welcomeButtons(): array
     {
         $keyboard = [
             [
-                ['text' => '💹 محاسبه BMI'],
-                ['text' => '♨ بارنگ فود']
+                ['text' => 'فروشگاه ها'],
+                ['text' => 'دسته بندی ها'],
+                ['text' => 'اخبار'],
+                ['text' => 'درباره ما'],
+                ['text' => 'تماس با ما'],
             ],
-            [
-                ['text' => '⚖️ محاسبه کالری مورد نیاز'],
-                ['text' => '❗️ راهنما']
-            ],
+
         ];
 
         return $keyboard;
@@ -61,69 +61,88 @@ class KeyboardMain
     /**
      * @return array
      */
-    public function genderBottom(): array
+    public function citiesButtons($cities): array
+    {
+
+        $keyboards = [[]];
+
+        foreach ($cities as $city){
+            $keyboard[]=['text'=>$city['name']];
+
+        }
+
+        $keyboards[][] = ['text' => '🔙 بازگشت به منو اصلی'];
+
+
+        return $keyboards;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function categories($categories): array
+    {
+        $keyboards = [[]];
+
+        foreach ($categories as $k=>$category){
+            $keyboards[][]=['text'=>$category['name']];
+
+        }
+
+        $keyboards[][] = ['text' => '🔙 بازگشت به منو اصلی'];
+
+
+        return $keyboards;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function askCity(): array
     {
         $keyboard = [
             [
-                ['text' => '👨‍⚖️ مرد'],
-                ['text' => '👩‍⚖️ زن']
+                ['text' => 'شهر خود را وارد کنید'],
+            ],
+        ];
+
+        return $keyboard;
+    }
+
+    /**
+     * @return array
+     */
+    public function enterCityOrBack(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'فروشگاه ها'],
+                ['text' => '🔙 بازگشت به منو اصلی'],
+            ],
+        ];
+
+        return $keyboard;
+    }
+
+    
+    /**
+     * @return array
+     */
+    public function backButton(): array
+    {
+        $keyboard = [
+            [
+                ['text' => '🔙 بازگشت به منو اصلی'],
             ],
         ];
 
         return $keyboard;
     }
     
-    /**
-     * @return array
-     */
-    public function backBottom(): array
-    {
-        $keyboard = [
-            [
-                ['text' => '🔙 بازگشت به صفحه اصلی'],
-            ],
-        ];
 
-        return $keyboard;
-    }
-    
-    /**
-     * @return array
-     */
-    public function stateBottom(): array
-    {
-        $keyboard = [
-            [
-                ['text' => 'شیرده'],
-                ['text' => 'باردار'],
-                ['text' => 'عادی'],
-            ],
-        ];
 
-        return $keyboard;
-    }
-
-    /**
-     * @return array
-     */
-    public function activityBottom(): array
-    {
-        $keyboard = [
-            [
-                ['text' => 'کم فعالیت'],
-                ['text' => 'بدون فعالیت'],
-            ],
-            [
-                ['text' => 'فعالیت زیاد'],
-                ['text' => 'فعالیت متوسط'],
-            ],
-            [
-                ['text' => 'فعالیت خیلی زیاد']
-            ],
-        ];
-
-        return $keyboard;
-    }
 
     /**
      * @param $brands
@@ -141,73 +160,6 @@ class KeyboardMain
         return $keyboard;
     }
 
-    public function addToCartButton($brands): array
-    {
-        $main = [];
-        $keyboard = [];
-        foreach ($brands as $key => $value) {
-            array_push($main, ['text' => 'اضافه کردن به سبد خرید', "callback_data" => $value['pro_ID']]);
-            $temp = array_slice($main, -1);
-            array_push($keyboard, ($temp));
-        }
-
-        return $keyboard;
-    }
-
-    /**
-     * @return array
-     */
-    public function listProductBottom(): array
-    {
-        $keyboard = [
-            [
-                ['text' => 'اضافه کردن به سبد خرید'],
-                ['text' => 'مشاهده سبد خرید'],
-            ],
-            [
-                ['text' => 'می پسندم'],
-                ['text' => 'نمی پسندم'],
-            ],
-            [
-                ['text' => 'ثبت نظر'],
-                ['text' => 'ثبت امتیاز'],
-            ],
-            [
-                ['text' => 'بازگشت به منوی اصلی'],
-            ],
-        ];
-
-        return $keyboard;
-    }
-
-    /**
-     * @param $categories
-     * @return array
-     */
-    public function listCategoryBottom($categories): array
-    {
-        $keyboard[] = [
-            ['text' => 'پرفروش ترین ها'],
-            ['text' => 'ارزان ترین ها'],
-        ];
-
-        $keyboard[] = [
-            ['text' => 'محبوب ترین ها'],
-            ['text' => 'تازه ترین ها'],
-        ];
-
-        foreach ($categories as $key => $value) {
-            $keyboard[][] = ['text' => $value['cat_Name']];
-        }
-
-        $keyboard[] = [
-            ['text' => 'بازگشت به منوی اصلی'],
-            ['text' => 'بازگشت به مرحله قبل']
-        ];
-
-        return $keyboard;
-    }
-
     public function back()
     {
         $keyboard = [
@@ -219,12 +171,12 @@ class KeyboardMain
         return $keyboard;
     }
 
-    public function listProduct($product): array
+    public function listCities($cities): array
     {
         $main = [];
         $keyboard = [];
-        foreach ($product as $key => $value) {
-            array_push($main, ['text' => 'مشاهده محصول', "callback_data" => $value['pro_ID']]);
+        foreach ($cities as $key => $city) {
+            array_push($main, ['text' => $city['name'],"callback_data" => 'getShops-'.$city['id']]);
             $temp = array_slice($main, -1);
             array_push($keyboard, ($temp));
         }
@@ -232,47 +184,7 @@ class KeyboardMain
         return $keyboard;
     }
 
-    public function showCartBottom(): array
-    {
-        $keyboard = [
-            [
-                ['text' => 'افزودن محصول'],
-                ['text' => 'حذف محصول']
-            ],
-            [
-                ['text' => 'مشاهده سبد خرید'],
-            ],
-            [
-                ['text' => 'ثبت نهایی'],
-            ],
-            [
-                ['text' => 'بازگشت به منوی اصلی']
-            ]
-        ];
 
-        return $keyboard;
-    }
-
-    public function afterAddingToCart(): array
-    {
-        $keyboard = [
-            [
-                ['text' => 'افزودن محصول'],
-                ['text' => 'حذف محصول']
-            ],
-            [
-                ['text' => 'مشاهده سبد خرید'],
-            ],
-            [
-                ['text' => 'ثبت نهایی'],
-            ],
-            [
-                ['text' => 'بازگشت به منوی اصلی']
-            ]
-        ];
-
-        return $keyboard;
-    }
 
     public function previousStepBottom(): array
     {

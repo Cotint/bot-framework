@@ -13,7 +13,7 @@ namespace service;
 class IO
 {
     public $request;
-    public $response;
+    public $response = [];
 
     /**
      * IO constructor.
@@ -51,10 +51,17 @@ class IO
      */
     public function setResponse($response)
     {
-        $this->response = $response;
+        $this->response[] = $response;
     }
 
     public function sendResponse()
+    {
+       foreach ($this->response as $res){
+           $this->normalizeResponse($res);
+       }
+    }
+
+    public function normalizeResponse($response)
     {
         if (isset($this->request->callback_query))
             $chatId = $this->request->callback_query->message->chat->id;
@@ -62,33 +69,35 @@ class IO
             $chatId = $this->request->message->chat->id;
 
 
-        $botToken = "352648200:AAH3AgcNeQSKDRkByDLuO2Ah4UsRktXY9o8";
+        $botToken = "484930502:AAGK7wIOoIpYDUgYzyq7eFRQ1dgO9J-ZKPc";
         $web = "https://api.telegram.org/bot" . $botToken;
-        $method = $this->response['method'];
-        $replyMarkup = $this->response['reply_markup'];
+
+        $method = $response['method'];
+        $replyMarkup = $response['reply_markup'];
         $encodedMarkup = json_encode($replyMarkup);
 
         if ($method == 'sendPhoto') {
-            $photo = $this->response['photo'];
-            $caption = $this->response['caption'];
+            $photo = $response['photo'];
+            $caption = $response['caption'];
             file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&photo=' . $photo . '&caption=' . $caption);
         }
         if ($method == 'sendMessage') {
-            $text = $this->response['text'];
-            if (isset($this->response['parse_mode'])) {
-                $parsMode = $this->response['parse_mode'];
+            $text = $response['text'];
+
+            if (isset($response['parse_mode'])) {
+                $parsMode = $response['parse_mode'];
                 file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&text=' . $text . '&parse_mode=' . $parsMode);
             } else {
                 if (is_array($text)) {
-                    if (isset($this->response['keyboard'])) {
-                        $keyboard = $this->response['keyboard'];
+                    if (isset($response['keyboard'])) {
+                        $keyboard = $response['keyboard'];
                     }
                     for ($i = 0; $i < count($text); ++$i) {
-                        if (isset($this->response['keyboard'])) {
-                            $this->response['reply_markup'] = [
+                        if (isset($response['keyboard'])) {
+                            $response['reply_markup'] = [
                                 'inline_keyboard' => [[$keyboard[$i]]],
                             ];
-                            $encodedMarkup = json_encode($this->response['reply_markup']);
+                            $encodedMarkup = json_encode($response['reply_markup']);
                         }
                         file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&text=' . $text[$i]);
                     }
@@ -98,14 +107,14 @@ class IO
             }
         }
         if ($method == 'sendVenue') {
-            $lat = $this->response['latitude'];
-            $lng = $this->response['longitude'];
-            $address = $this->response['address'];
-            $title = $this->response['title'];
+            $lat = $response['latitude'];
+            $lng = $response['longitude'];
+            $address = $response['address'];
+            $title = $response['title'];
             file_get_contents($web . '/' . $method . '?chat_id=' . $chatId . '&reply_markup=' . $encodedMarkup . '&latitude=' . $lat . '&longitude=' . $lng . '&address=' . $address . '&title=' . $title);
         }
 
 //        header("Content-Type: application/json");
-//        echo json_encode($this->response);
+//        echo json_encode($response);
     }
 }

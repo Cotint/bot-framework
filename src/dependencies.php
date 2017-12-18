@@ -29,12 +29,12 @@ $container->share('keyboard', new \main\KeyboardMain());
 
 # userModel
 $container->share('userModel', new \model\UserModel($container));
+$container->share('shopModel', new \model\ShopModel($container));
+$container->share('zoneModel', new \model\ZoneModel($container));
+$container->share('newsModel', new \model\NewsModel($container));
+$container->share('contactModel', new \model\ContactModel($container));
+$container->share('categoryModel', new \model\CategoryModel($container));
 
-# userHistoryModel
-$container->share('userHistoryModel', new \model\UserHistoryModel($container));
-
-# supportModel
-$container->share('supportModel', new \model\SupportModel($container));
 
 # callbackMain
 $container->share('callbackMain', new \main\CallbackMain($container));
