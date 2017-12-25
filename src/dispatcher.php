@@ -19,7 +19,6 @@ $request = $io->getRequest();
 /** @var \Monolog\Logger $log */
 $log = $container->get('logger');
 $log->addInfo(json_encode((array)$request));
-
 $dispatch = new stdClass();
 switch ($request) {
     case isset($request->message):

@@ -16,7 +16,7 @@ class CategoryModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT name FROM `categories` WHERE `active`=1 AND `type`='product' ORDER BY `order`");
+        $stmt = $pdo->prepare("SELECT name,emoji FROM `categories` WHERE `active`=1 AND `type`='product' ORDER BY `order`");
         $stmt->execute();
 
         $categories = $stmt->fetchAll();
@@ -60,9 +60,9 @@ class CategoryModel extends MainModel
 
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM `products` WHERE `active`=1 AND `category_id`=".$category_id);
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM `products` WHERE active= :active AND category_id= :category_id");
 
-        $stmt->execute();
+        $stmt->execute(array('active' => 1,'category_id'=>$category_id));
 
         return $stmt->fetchColumn()>0;
 
@@ -85,9 +85,9 @@ class CategoryModel extends MainModel
 
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT id FROM `categories` WHERE `name`='".$categoryName."'");
+        $stmt = $pdo->prepare("SELECT id FROM `categories` WHERE name= :name");
 
-        $stmt->execute();
+        $stmt->execute(['name'=>$categoryName]);
 
         $result= $stmt->fetchAll();
 

@@ -23,6 +23,11 @@ class MessageController extends MainController
         $this->messageMain()->start();
     }
 
+    public function home()
+    {
+        $this->messageMain()->home();
+    }
+
     public function shops(){
         $this->messageMain()->getShops();
     }
@@ -34,11 +39,6 @@ class MessageController extends MainController
     public function news()
     {
         $this->messageMain()->getNews();
-    }
-
-    public function help()
-    {
-        $this->messageMain()->help();
     }
 
     public function askCity()
@@ -56,10 +56,6 @@ class MessageController extends MainController
         $this->messageMain()->about();
     }
 
-    public function home()
-    {
-        $this->messageMain()->home();
-    }
 
     public function state()
     {

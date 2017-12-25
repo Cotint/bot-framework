@@ -18,15 +18,18 @@ class NewsModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT * FROM `news` WHERE `confirm`=1 LIMIT 5");
-        $stmt->execute();
+        $stmt = $pdo->prepare('SELECT * FROM news WHERE confirm = :confirm ORDER BY created_at DESC LIMIT 5 ');
 
-        $result = $stmt->fetchAll();
+        $stmt->execute(array('confirm' => 1));
+
+//        $stmt->execute();
+//
+//        $result = $stmt->fetchAll();
 
 
         $allNews=[];
 
-        foreach ($result as $news){
+        foreach ($stmt as $news){
             $news['image_link']="http://dev.tnl.ir/uploaded_files/".$this->getImageName($news['image_id']);
             $allNews[]=$news;
         }
@@ -40,8 +43,8 @@ class NewsModel extends MainModel
 
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT name FROM `filemanager` WHERE `id`=".$id);
-        $stmt->execute();
+        $stmt = $pdo->prepare("SELECT name FROM filemanager WHERE id= :id");
+        $stmt->execute(['id' => $id]);
 
         $result = $stmt->fetchAll();
 

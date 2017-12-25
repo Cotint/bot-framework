@@ -11,6 +11,7 @@ namespace controller;
 use main\CallbackMain;
 
 
+
 class CallbackController extends MainController
 {
     private function callbackMain(): CallbackMain
@@ -29,7 +30,7 @@ class CallbackController extends MainController
 
 
         $this->callbackMain()->getShops($category_id);
-    } 
+    }
 
 
 }

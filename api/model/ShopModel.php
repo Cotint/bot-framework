@@ -54,15 +54,13 @@ class ShopModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT * FROM `shops` WHERE `active`=1 AND `zone_id` =".$id);
+        $stmt = $pdo->prepare('SELECT * FROM shops WHERE active = :active AND zone_id = :zone');
 
-        $stmt->execute();
-
-        $result = $stmt->fetchAll();
+        $stmt->execute(array('active' => 1, 'zone' => $id));
 
         $shops=[];
 
-        foreach ($result as $shop){
+        foreach ($stmt as $shop){
             $shop['image_link']="http://dev.tnl.ir/uploaded_files/".$this->getImageName($shop['image_id']);
             $shop['map_link']=$this->mapLink($shop['latlng']);
             $shops[]=$shop;
@@ -137,13 +135,13 @@ class ShopModel extends MainModel
 
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT name FROM `filemanager` WHERE `id`=".$id);
-        $stmt->execute();
+        $stmt = $pdo->prepare("SELECT name FROM filemanager WHERE id= :id");
+
+        $stmt->execute(['id' => $id]);
 
         $result = $stmt->fetchAll();
 
         return $result[0]['name'];
     }
+
 }
-
-

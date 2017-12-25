@@ -25,7 +25,7 @@ class ZoneModel extends MainModel
     {
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT zone_id FROM `shops` WHERE `active`=1 ");
+        $stmt = $pdo->prepare("SELECT zone_id FROM `shops` WHERE `active`=1");
         $stmt->execute();
 
         $zones_id = $stmt->fetchAll();
@@ -70,7 +70,7 @@ class ZoneModel extends MainModel
 
         $pdo = $this->container->get('pdo');
 
-        $stmt = $pdo->prepare("SELECT COUNT(*) FROM `shops` WHERE `active`=1 AND `zone_id`= ".$zone_id);
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM `shops` WHERE `active`=1 AND `zone_id`=".$zone_id);
 
         $stmt->execute();
 

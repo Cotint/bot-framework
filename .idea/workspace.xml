@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d29fcb03-2040-42ef-b38f-9452b233457e" name="Default" comment="" />
+    <list default="true" id="d29fcb03-2040-42ef-b38f-9452b233457e" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/api/index.html" afterPath="$PROJECT_DIR$/api/webhook.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controller/CallbackController.php" afterPath="$PROJECT_DIR$/api/controller/CallbackController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controller/MessageController.php" afterPath="$PROJECT_DIR$/api/controller/MessageController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/index.php" afterPath="$PROJECT_DIR$/api/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/CallbackMain.php" afterPath="$PROJECT_DIR$/api/main/CallbackMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/KeyboardMain.php" afterPath="$PROJECT_DIR$/api/main/KeyboardMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/main/MessageMain.php" afterPath="$PROJECT_DIR$/api/main/MessageMain.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/CategoryModel.php" afterPath="$PROJECT_DIR$/api/model/CategoryModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/NewsModel.php" afterPath="$PROJECT_DIR$/api/model/NewsModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/ShopModel.php" afterPath="$PROJECT_DIR$/api/model/ShopModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/model/ZoneModel.php" afterPath="$PROJECT_DIR$/api/model/ZoneModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/service/IO.php" afterPath="$PROJECT_DIR$/api/service/IO.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/debug.log" afterPath="$PROJECT_DIR$/log/debug.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dispatcher.php" afterPath="$PROJECT_DIR$/src/dispatcher.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/settings.php" afterPath="$PROJECT_DIR$/src/settings.php" />
+    </list>
     <ignored path="telegrambot.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -20,161 +38,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MessageMain.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/MessageMain.php">
+      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/controller/MessageController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="267" column="52" lean-forward="false" selection-start-line="267" selection-start-column="52" selection-end-line="267" selection-end-column="52" />
-              <folding>
-                <element signature="e#6#96#0#PHP" expanded="true" />
-                <element signature="e#115#154#0#PHP" expanded="true" />
-                <element signature="e#410#512#0#PHP" expanded="false" />
-                <element signature="e#518#557#0#PHP" expanded="false" />
-                <element signature="e#2969#3642#0#PHP" expanded="false" />
-                <element signature="e#7527#7970#0#PHP" expanded="false" />
-                <element signature="e#14202#16414#0#PHP" expanded="false" />
-                <element signature="e#16420#17836#0#PHP" expanded="false" />
-                <element signature="e#17842#18279#0#PHP" expanded="false" />
-                <element signature="e#18285#18850#0#PHP" expanded="false" />
-                <element signature="e#18856#19997#0#PHP" expanded="false" />
-                <element signature="e#20003#22421#0#PHP" expanded="false" />
-                <element signature="e#22427#31215#0#PHP" expanded="false" />
-                <element signature="e#25032#30804#0#PHP" expanded="false" />
-                <element signature="e#31221#31899#0#PHP" expanded="false" />
-                <element signature="e#31905#32040#0#PHP" expanded="false" />
-                <element signature="e#32046#33268#0#PHP" expanded="false" />
-                <element signature="e#33274#34126#0#PHP" expanded="false" />
-                <element signature="e#34132#35273#0#PHP" expanded="false" />
-                <element signature="e#35279#36261#0#PHP" expanded="false" />
-                <marker date="1513604647240" expanded="true" signature="8821:8827" ph="..." />
-                <marker date="1513604647240" expanded="true" signature="32286:32541" ph="SELECT DISTI... brands" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tnlBot.sql" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/db/tnlBot.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+            <state relative-caret-position="18">
+              <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/UserModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="30" column="216" lean-forward="false" selection-start-line="30" selection-start-column="216" selection-end-line="30" selection-end-column="216" />
-              <folding>
-                <marker date="1513600604170" expanded="true" signature="737:842" ph="INSERT INTO user_history... " />
-                <marker date="1513600604170" expanded="true" signature="737:919" ph="INSERT INTO user_history... " />
-                <marker date="1513600604170" expanded="true" signature="1659:1830" ph="UPDATE user_... " />
-                <marker date="1513600604170" expanded="true" signature="2270:2441" ph="UPDATE user_... " />
-                <marker date="1513600604170" expanded="true" signature="2804:2932" ph="UPDATE `user... " />
-                <marker date="1513600604170" expanded="true" signature="3107:3154" ph="SELECT * FRO... user" />
-                <marker date="1513600604170" expanded="true" signature="3381:3434" ph="SELECT * FRO... user" />
-                <marker date="1513600604170" expanded="true" signature="3658:3714" ph="SELECT last_... user" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="CallbackController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/controller/CallbackController.php">
+        <entry file="file://$PROJECT_DIR$/api/controller/CallbackController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+            <state relative-caret-position="365">
+              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContactModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/ContactModel.php">
+      <file leaf-file-name="settings.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/settings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-              <folding>
-                <marker date="1513602659288" expanded="true" signature="443:466" ph="SELECT * FRO... options" />
-                <marker date="1513602659288" expanded="true" signature="970:1031" ph="SELECT COUNT... shops" />
-                <marker date="1513602659288" expanded="true" signature="1243:1298" ph="SELECT id FR... zone" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NewsModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/NewsModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="20" column="77" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="77" />
-              <folding>
-                <marker date="1513603806275" expanded="true" signature="294:332" ph="SELECT * FRO... news" />
-                <marker date="1513603806275" expanded="true" signature="294:340" ph="SELECT * FRO... news" />
-                <marker date="1513603806275" expanded="true" signature="769:811" ph="SELECT name filemanager" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CallbackMain.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/CallbackMain.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-265">
-              <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-              <folding>
-                <element signature="e#115#154#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CategoryModel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/CategoryModel.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding>
-                <element signature="e#160#664#0#PHP" expanded="false" />
-                <marker date="1513593592058" expanded="true" signature="265:311" ph="SELECT * FRO... categories" />
-                <marker date="1513593592058" expanded="true" signature="265:349" ph="SELECT * FRO... categories" />
-                <marker date="1513593592058" expanded="true" signature="854:878" ph="SELECT * FRO... shops" />
-                <marker date="1513593592058" expanded="true" signature="854:895" ph="SELECT * FRO... categories" />
-                <marker date="1513593592058" expanded="true" signature="854:896" ph="SELECT * FRO... products" />
-                <marker date="1513593592058" expanded="true" signature="854:914" ph="SELECT * FRO... products" />
-                <marker date="1513593592058" expanded="true" signature="854:915" ph="SELECT * FRO... products" />
-                <marker date="1513593592058" expanded="true" signature="854:947" ph="SELECT * FRO... products" />
-                <marker date="1513593592058" expanded="true" signature="1458:1525" ph="SELECT COUNT... products" />
-                <marker date="1513593592058" expanded="true" signature="1735:1777" ph="SELECT name filemanager" />
-                <marker date="1513593592058" expanded="true" signature="2024:2065" ph="SELECT id FR... categories" />
-                <marker date="1513593592058" expanded="true" signature="2024:2081" ph="SELECT id FR... categories" />
-                <marker date="1513593592058" expanded="true" signature="2024:2084" ph="SELECT id FR... categories" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyboardMain.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/KeyboardMain.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="188" column="10" lean-forward="false" selection-start-line="188" selection-start-column="4" selection-end-line="188" selection-end-column="10" />
-              <folding>
-                <element signature="e#177#697#0#PHP" expanded="false" />
-                <element signature="e#2559#2822#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MessageController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../tnl-bot/api/controller/MessageController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="71" column="36" lean-forward="false" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+            <state relative-caret-position="167">
+              <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -211,7 +99,6 @@
         <option value="$PROJECT_DIR$/api/controller/CallbackController.php" />
         <option value="$PROJECT_DIR$/api/controller/InlineController.php" />
         <option value="$PROJECT_DIR$/log/debug.log" />
-        <option value="$PROJECT_DIR$/api/index.php" />
         <option value="$PROJECT_DIR$/../telegram/my_project_name/web/app_dev.php" />
         <option value="$PROJECT_DIR$/../telegram/my_project_name/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/../telegram/index.php" />
@@ -219,7 +106,6 @@
         <option value="$PROJECT_DIR$/api/model/BrandsModel.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/api/main/MainMain.php" />
-        <option value="$PROJECT_DIR$/src/dispatcher.php" />
         <option value="$PROJECT_DIR$/api/service/IO.php" />
         <option value="$PROJECT_DIR$/api/model/SupportModel.php" />
         <option value="$PROJECT_DIR$/api/model/UserHistoryModel.php" />
@@ -228,29 +114,31 @@
         <option value="$PROJECT_DIR$/src/dependencies.php" />
         <option value="$PROJECT_DIR$/api/model/MainModel.php" />
         <option value="$PROJECT_DIR$/src/settings.php" />
-        <option value="$PROJECT_DIR$/api/main/MessageMain.php" />
-        <option value="$PROJECT_DIR$/api/controller/MessageController.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/api/main/KeyboardMain.php" />
         <option value="$PROJECT_DIR$/api/model/UserModel.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/index.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/src/run.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/service/IO.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/src/dispatcher.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/controller/CallbackController.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/model/ShopModel.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/model/CategoryModel.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/model/ZoneModel.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/main/CallbackMain.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/src/dependencies.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/src/settings.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/model/UserModel.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/model/ContactModel.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/controller/MessageController.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/main/KeyboardMain.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/model/NewsModel.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/api/main/MessageMain.php" />
-        <option value="$PROJECT_DIR$/../tnl-bot/db/tnlBot.sql" />
+        <option value="$PROJECT_DIR$/src/run.php" />
+        <option value="$PROJECT_DIR$/api/service/IO.php" />
+        <option value="$PROJECT_DIR$/api/controller/CallbackController.php" />
+        <option value="$PROJECT_DIR$/api/model/ShopModel.php" />
+        <option value="$PROJECT_DIR$/api/model/CategoryModel.php" />
+        <option value="$PROJECT_DIR$/api/model/ZoneModel.php" />
+        <option value="$PROJECT_DIR$/api/main/CallbackMain.php" />
+        <option value="$PROJECT_DIR$/src/dependencies.php" />
+        <option value="$PROJECT_DIR$/src/settings.php" />
+        <option value="$PROJECT_DIR$/api/model/UserModel.php" />
+        <option value="$PROJECT_DIR$/api/model/ContactModel.php" />
+        <option value="$PROJECT_DIR$/api/controller/MessageController.php" />
+        <option value="$PROJECT_DIR$/api/main/KeyboardMain.php" />
+        <option value="$PROJECT_DIR$/api/model/NewsModel.php" />
+        <option value="$PROJECT_DIR$/db/tnlBot.sql" />
+        <option value="$PROJECT_DIR$/api/main/MessageMain.php" />
+        <option value="$PROJECT_DIR$/api/main/MessageMain.php" />
+        <option value="$PROJECT_DIR$/src/dispatcher.php" />
+        <option value="$PROJECT_DIR$/src/dispatcher.php" />
+        <option value="$PROJECT_DIR$/api/index.php" />
+        <option value="$PROJECT_DIR$/api/index.php" />
+        <option value="$PROJECT_DIR$/api/controller/MessageController.php" />
       </list>
     </option>
   </component>
@@ -285,6 +173,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -307,18 +196,6 @@
             <path>
               <item name="tnl_bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="tnl-bot" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="main" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="tnl_bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tnl-bot" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="api" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
-            <path>
-              <item name="tnl_bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tnl-bot" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="db" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -326,28 +203,22 @@
               <item name="tnl-bot" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="tnl_bot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tnl-bot" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="vendor" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tnl" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/../tnl-bot/api/model" />
+      <recent name="$PROJECT_DIR$/api/model" />
       <recent name="$PROJECT_DIR$/api/model" />
     </key>
   </component>
@@ -431,25 +302,31 @@
       <workItem from="1511240601674" duration="14552000" />
       <workItem from="1511267507236" duration="1278000" />
       <workItem from="1513169701331" duration="2032000" />
-      <workItem from="1513401810600" duration="89473000" />
+      <workItem from="1513401810600" duration="90076000" />
+      <workItem from="1513680031688" duration="13000" />
+      <workItem from="1513680150712" duration="4000" />
+      <workItem from="1513687212702" duration="4675000" />
+      <workItem from="1513774868645" duration="599000" />
+      <workItem from="1514007540473" duration="54000" />
+      <workItem from="1514028580771" duration="17000" />
+      <workItem from="1514028611939" duration="8000" />
+      <workItem from="1514179866607" duration="53000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253874000" />
+    <option name="totallyTimeSpent" value="259900000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24143426" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21992032" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32686085" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32686085" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32524273" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -457,6 +334,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32686085" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -482,35 +360,35 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/autoload.php">
+    <entry file="file://$PROJECT_DIR$/src/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/dependencies.php">
+    <entry file="file://$PROJECT_DIR$/src/dependencies.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="39" column="68" lean-forward="false" selection-start-line="39" selection-start-column="68" selection-end-line="39" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/dispatcher.php">
+    <entry file="file://$PROJECT_DIR$/src/dispatcher.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1365">
           <caret line="96" column="36" lean-forward="false" selection-start-line="96" selection-start-column="36" selection-end-line="96" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/run.php">
+    <entry file="file://$PROJECT_DIR$/src/run.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/settings.php">
+    <entry file="file://$PROJECT_DIR$/src/settings.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -518,7 +396,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/service/Token.php" />
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/log/debug.log">
+    <entry file="file://$PROJECT_DIR$/log/debug.log">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -540,142 +418,79 @@
     <entry file="file://$PROJECT_DIR$/vendor/league/container/src/Container.php" />
     <entry file="file://$PROJECT_DIR$/api/model/BrandsModel.php" />
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/Core_c.php" />
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/.gitignore">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="5" lean-forward="false" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/SupportModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/UserHistoryModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/composer.json">
+    <entry file="file://$PROJECT_DIR$/api/model/SupportModel.php" />
+    <entry file="file://$PROJECT_DIR$/api/model/UserHistoryModel.php" />
+    <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/MainModel.php">
+    <entry file="file://$PROJECT_DIR$/api/model/MainModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/service/IO.php">
+    <entry file="file://$PROJECT_DIR$/api/service/IO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/run.php">
+    <entry file="file://$PROJECT_DIR$/src/run.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/dispatcher.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="71" column="39" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/ZoneModel.php">
+    <entry file="file://$PROJECT_DIR$/api/model/ZoneModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="279">
           <caret line="47" column="23" lean-forward="false" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-          <folding>
-            <marker date="1513594573142" expanded="true" signature="440:484" ph="SELECT zone_... shops" />
-            <marker date="1513594573142" expanded="true" signature="728:767" ph="SELECT * FRO... zone" />
-            <marker date="1513594573142" expanded="true" signature="1316:1351" ph="SELECT zone_... shops" />
-            <marker date="1513594573142" expanded="true" signature="1316:1377" ph="SELECT COUNT... zone" />
-            <marker date="1513594573142" expanded="true" signature="1316:1387" ph="SELECT COUNT... zone" />
-            <marker date="1513594573142" expanded="true" signature="1589:1644" ph="SELECT id FR... zone" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/ShopModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="62" column="10" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="71" selection-end-column="22" />
-          <folding>
-            <element signature="e#179#887#0#PHP" expanded="false" />
-            <element signature="e#1596#1879#0#PHP" expanded="false" />
-            <element signature="e#2146#2714#0#PHP" expanded="false" />
-            <element signature="e#2720#2989#0#PHP" expanded="false" />
-            <marker date="1513589192462" expanded="true" signature="287:314" ph="SELECT * FRO... shops" />
-            <marker date="1513589192462" expanded="true" signature="287:315" ph="SELECT last_... shops" />
-            <marker date="1513589192462" expanded="true" signature="287:331" ph="SELECT zone_... shops" />
-            <marker date="1513589192462" expanded="true" signature="575:607" ph="SELECT * FRO... zone" />
-            <marker date="1513589192462" expanded="true" signature="575:608" ph="SELECT * FRO... zone" />
-            <marker date="1513589192462" expanded="true" signature="575:609" ph="SELECT * FRO... zone" />
-            <marker date="1513589192462" expanded="true" signature="575:614" ph="SELECT * FRO... zone" />
-            <marker date="1513589192462" expanded="true" signature="575:616" ph="SELECT * FRO... zone" />
-            <marker date="1513589192462" expanded="true" signature="1002:1056" ph="SELECT * FRO... shops" />
-            <marker date="1513589192462" expanded="true" signature="1716:1771" ph="SELECT id FR... zone" />
-            <marker date="1513589192462" expanded="true" signature="2001:2062" ph="SELECT FROM shops" />
-            <marker date="1513589192462" expanded="true" signature="2834:2876" ph="SELECT name filemanager" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/InlineMain.php">
+    <entry file="file://$PROJECT_DIR$/api/main/InlineMain.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/MainMain.php">
+    <entry file="file://$PROJECT_DIR$/api/main/MainMain.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
           <caret line="36" column="49" lean-forward="false" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/autoload.php">
+    <entry file="file://$PROJECT_DIR$/src/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="11" column="3" lean-forward="false" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/vendor/autoload.php">
+    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/controller/MainController.php">
+    <entry file="file://$PROJECT_DIR$/api/controller/MainController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="13" column="6" lean-forward="false" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
@@ -683,7 +498,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/controller/InlineController.php">
+    <entry file="file://$PROJECT_DIR$/api/controller/InlineController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
@@ -691,166 +506,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/dependencies.php">
+    <entry file="file://$PROJECT_DIR$/src/dependencies.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/src/settings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/UserModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="30" column="216" lean-forward="false" selection-start-line="30" selection-start-column="216" selection-end-line="30" selection-end-column="216" />
-          <folding>
-            <marker date="1513600604170" expanded="true" signature="737:842" ph="INSERT INTO user_history... " />
-            <marker date="1513600604170" expanded="true" signature="737:919" ph="INSERT INTO user_history... " />
-            <marker date="1513600604170" expanded="true" signature="1659:1830" ph="UPDATE user_... " />
-            <marker date="1513600604170" expanded="true" signature="2270:2441" ph="UPDATE user_... " />
-            <marker date="1513600604170" expanded="true" signature="2804:2932" ph="UPDATE `user... " />
-            <marker date="1513600604170" expanded="true" signature="3107:3154" ph="SELECT * FRO... user" />
-            <marker date="1513600604170" expanded="true" signature="3381:3434" ph="SELECT * FRO... user" />
-            <marker date="1513600604170" expanded="true" signature="3658:3714" ph="SELECT last_... user" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/CategoryModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" column="10" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding>
-            <element signature="e#160#664#0#PHP" expanded="false" />
-            <marker date="1513593592058" expanded="true" signature="265:311" ph="SELECT * FRO... categories" />
-            <marker date="1513593592058" expanded="true" signature="265:349" ph="SELECT * FRO... categories" />
-            <marker date="1513593592058" expanded="true" signature="854:878" ph="SELECT * FRO... shops" />
-            <marker date="1513593592058" expanded="true" signature="854:895" ph="SELECT * FRO... categories" />
-            <marker date="1513593592058" expanded="true" signature="854:896" ph="SELECT * FRO... products" />
-            <marker date="1513593592058" expanded="true" signature="854:914" ph="SELECT * FRO... products" />
-            <marker date="1513593592058" expanded="true" signature="854:915" ph="SELECT * FRO... products" />
-            <marker date="1513593592058" expanded="true" signature="854:947" ph="SELECT * FRO... products" />
-            <marker date="1513593592058" expanded="true" signature="1458:1525" ph="SELECT COUNT... products" />
-            <marker date="1513593592058" expanded="true" signature="1735:1777" ph="SELECT name filemanager" />
-            <marker date="1513593592058" expanded="true" signature="2024:2065" ph="SELECT id FR... categories" />
-            <marker date="1513593592058" expanded="true" signature="2024:2081" ph="SELECT id FR... categories" />
-            <marker date="1513593592058" expanded="true" signature="2024:2084" ph="SELECT id FR... categories" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/ContactModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
-          <folding>
-            <marker date="1513602659288" expanded="true" signature="443:466" ph="SELECT * FRO... options" />
-            <marker date="1513602659288" expanded="true" signature="970:1031" ph="SELECT COUNT... shops" />
-            <marker date="1513602659288" expanded="true" signature="1243:1298" ph="SELECT id FR... zone" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/KeyboardMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="188" column="10" lean-forward="false" selection-start-line="188" selection-start-column="4" selection-end-line="188" selection-end-column="10" />
-          <folding>
-            <element signature="e#177#697#0#PHP" expanded="false" />
-            <element signature="e#2559#2822#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/model/NewsModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="20" column="77" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="77" />
-          <folding>
-            <marker date="1513603806275" expanded="true" signature="294:332" ph="SELECT * FRO... news" />
-            <marker date="1513603806275" expanded="true" signature="294:340" ph="SELECT * FRO... news" />
-            <marker date="1513603806275" expanded="true" signature="769:811" ph="SELECT name filemanager" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/controller/MessageController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="71" column="36" lean-forward="false" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/controller/CallbackController.php">
+    <entry file="file://$PROJECT_DIR$/api/model/UserModel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="30" column="35" lean-forward="false" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
-          <folding />
+          <caret line="30" column="216" lean-forward="false" selection-start-line="30" selection-start-column="216" selection-end-line="30" selection-end-column="216" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/CallbackMain.php">
+    <entry file="file://$PROJECT_DIR$/api/model/CategoryModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-265">
+        <state relative-caret-position="162">
+          <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/model/ContactModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main/KeyboardMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2718">
+          <caret line="188" column="10" lean-forward="false" selection-start-line="188" selection-start-column="4" selection-end-line="188" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/model/NewsModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="77" lean-forward="false" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main/CallbackMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
           <caret line="36" column="20" lean-forward="false" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
-          <folding>
-            <element signature="e#115#154#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/api/main/MessageMain.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="267" column="52" lean-forward="false" selection-start-line="267" selection-start-column="52" selection-end-line="267" selection-end-column="52" />
-          <folding>
-            <element signature="e#6#96#0#PHP" expanded="true" />
-            <element signature="e#115#154#0#PHP" expanded="true" />
-            <element signature="e#410#512#0#PHP" expanded="false" />
-            <element signature="e#518#557#0#PHP" expanded="false" />
-            <element signature="e#2969#3642#0#PHP" expanded="false" />
-            <element signature="e#7527#7970#0#PHP" expanded="false" />
-            <element signature="e#14202#16414#0#PHP" expanded="false" />
-            <element signature="e#16420#17836#0#PHP" expanded="false" />
-            <element signature="e#17842#18279#0#PHP" expanded="false" />
-            <element signature="e#18285#18850#0#PHP" expanded="false" />
-            <element signature="e#18856#19997#0#PHP" expanded="false" />
-            <element signature="e#20003#22421#0#PHP" expanded="false" />
-            <element signature="e#22427#31215#0#PHP" expanded="false" />
-            <element signature="e#25032#30804#0#PHP" expanded="false" />
-            <element signature="e#31221#31899#0#PHP" expanded="false" />
-            <element signature="e#31905#32040#0#PHP" expanded="false" />
-            <element signature="e#32046#33268#0#PHP" expanded="false" />
-            <element signature="e#33274#34126#0#PHP" expanded="false" />
-            <element signature="e#34132#35273#0#PHP" expanded="false" />
-            <element signature="e#35279#36261#0#PHP" expanded="false" />
-            <marker date="1513604647240" expanded="true" signature="8821:8827" ph="..." />
-            <marker date="1513604647240" expanded="true" signature="32286:32541" ph="SELECT DISTI... brands" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../tnl-bot/db/tnlBot.sql">
+    <entry file="file://$PROJECT_DIR$/db/tnlBot.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/model/ShopModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="65" column="51" lean-forward="false" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/main/MessageMain.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="31" lean-forward="false" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dispatcher.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="83" column="1" lean-forward="true" selection-start-line="83" selection-start-column="1" selection-end-line="83" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controller/MessageController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="22" column="32" lean-forward="false" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controller/CallbackController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding />
         </state>
       </provider>
