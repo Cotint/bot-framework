@@ -403,7 +403,7 @@ class MessageMain extends MainMain
 
 
                                 $content ='<a href="'.$product['image_link'].'?tnl">&#160;</a>';
-                                $content .=$product['name'];
+                                $content .="🔘 ".$product['name'];
 
                                 $result = [
                                     'method' => 'sendMessage',
