@@ -6,6 +6,8 @@
  * Time: 8:58 AM
  */
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+
 # get container
 $container = new League\Container\Container;
 
@@ -13,9 +15,45 @@ $container = new League\Container\Container;
 /** @var $setting array */
 $container->share('settings', $setting);
 
-
 # input output handler
 $container->share('io', new \service\IO());
+
+
+$container->share('capsule', function (){
+
+    $capsule = new Capsule;
+
+    $capsule->addConnection([
+        "driver" => "mysql",
+        "host" =>"localhost",
+        "database" => "barber",
+        "username" => "root",
+        "password" => "Cotint"
+
+    ]);
+
+    $capsule->bootEloquent();
+    $capsule->setAsGlobal();
+
+
+    return $capsule;
+});
+
+
+
+//
+//$container['capsule']->setAsGlobal();
+//// Setup the Eloquent ORM...
+//$container['capsule']->bootEloquent();
+
+//$container->share('capsule', (new Capsule())->addConnection([
+//                        "driver" => "mysql",
+//                        "host" =>"127.0.0.1",
+//                        "database" => "barber",
+//                        "username" => "root",
+//                        "password" => "Cotint"
+//
+//])->setAsGlobal());
 
 # log
 $container->share('logger', function () use ($setting) {
@@ -24,17 +62,11 @@ $container->share('logger', function () use ($setting) {
     return $log;
 });
 
+#guzzle
+$container->share('client',new GuzzleHttp\Client);
+
 # keyboard
 $container->share('keyboard', new \main\KeyboardMain());
-
-# userModel
-$container->share('userModel', new \model\UserModel($container));
-$container->share('shopModel', new \model\ShopModel($container));
-$container->share('zoneModel', new \model\ZoneModel($container));
-$container->share('newsModel', new \model\NewsModel($container));
-$container->share('contactModel', new \model\ContactModel($container));
-$container->share('categoryModel', new \model\CategoryModel($container));
-
 
 # callbackMain
 $container->share('callbackMain', new \main\CallbackMain($container));
@@ -63,4 +95,10 @@ $container->share('pdo', function () use ($setting) {
         return $e->getMessage();
     }
 });
+
+# userModel
+$container->share('userModel', new \model\UserModel($container));
+$container->share('reserveModel', new \model\ReserveModel($container));
+
+/*Add Your New Models Down Here*/
 

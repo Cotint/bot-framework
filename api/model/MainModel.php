@@ -24,6 +24,10 @@ class MainModel
     public function __construct(Container $container)
     {
         $this->container = $container;
-//        $this->pdo = $this->container->get('pdo');
     }
+
+//    public function capsule(string $collection): Collection
+//    {
+//        return $this->container->get('capsule')->{$collection};
+//    }
 }

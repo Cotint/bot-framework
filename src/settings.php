@@ -16,28 +16,8 @@ $setting = [
 
     'pdo' => [
         'servername' => 'localhost',
-        'dbname' => 'devtnl_tnl',
-        'username' => 'devtnl_tnl',
-        'password' => 'bo5hf9NO'
-    ],
-
-    # dispatch
-    'dispatcher' => [
-        'message' => [
-            '/start' => 'start',
-            '❓ درباره ما' => 'about',
-            '📞 تماس با ما' => 'contact',
-            '🏪 فروشگاه ها' => 'shops',
-            '🛍 دسته بندی ها' => 'categories',
-            '📝 اخبار' => 'news',
-            '🔙 بازگشت به منو اصلی' => 'home',
-        ],
-        'callback' => [
-            'data' => [
-                'getShops' => 'getShops',
-            ]
-        ],
-        'inline' => [
-        ]
+        'dbname' => 'barber',
+        'username' => 'root',
+        'password' => 'Cotint'
     ],
 ];

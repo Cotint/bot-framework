@@ -23,46 +23,6 @@ class MessageController extends MainController
         $this->messageMain()->start();
     }
 
-    public function home()
-    {
-        $this->messageMain()->home();
-    }
-
-    public function shops(){
-        $this->messageMain()->getShops();
-    }
-
-    public function categories(){
-        $this->messageMain()->getCategories();
-    }
-
-    public function news()
-    {
-        $this->messageMain()->getNews();
-    }
-
-    public function askCity()
-    {
-        $this->messageMain()->askCity();
-    }
-
-    public function contact()
-    {
-        $this->messageMain()->contact();
-    }
-
-    public function about()
-    {
-        $this->messageMain()->about();
-    }
-
-
-    public function state()
-    {
-        $this->messageMain()->state();
-    }
-
-
     public function messageOther()
     {
         $this->messageMain()->messageOther();

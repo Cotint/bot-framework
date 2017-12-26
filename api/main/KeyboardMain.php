@@ -11,17 +11,32 @@ namespace main;
 
 class KeyboardMain
 {
+    /**
+     * @return array
+     */
+    public function mainBottom(): array
+    {
+        $keyboard = [
+            [
+                ['text' => 'لیست برند ها'],
+            ],
+            [
+                ['text' => 'انتقادات و پیشنهادات'],
+                ['text' => 'معرفی به دوستان']
+            ],
+            [
+                ['text' => 'مشاوره رایگان']
+            ],
+            [
+                ['text' => 'تبلیغ شاپکت']
+            ],
+            [
+                ['text' => 'معرفی ربات']
+            ]
+        ];
 
-     public $emojis=[
-       'ابزار و لوازم'=>'🛠',
-       'پوشاک و کودک'=>'👕️',
-       'کادویی و تزئینی'=>'🎁',
-       'خانه و آشپزخانه'=>'🏠️',
-       'مدرسه و اداره'=>'✏️️',
-       'ورزش و سرگرمی'=>'⚽️',
-       'آرایشی و بهداشتی'=>'💄️',
-       'زیور آلات'=>'💫',
-     ];
+        return $keyboard;
+    }
 
     /**
      * @return array
@@ -29,20 +44,13 @@ class KeyboardMain
     public function welcomeButtons(): array
     {
         $keyboard = [
-
-                [
-                    ['text' => '🏪 فروشگاه ها'],
-                ],
-
-                [
-                    ['text' => '📝 اخبار'],
-                    ['text' =>  '🛍 دسته بندی ها'],
-                ],
-                [
-                    ['text' => '📞 تماس با ما'],
-                    ['text' => '❓ درباره ما'],
-
-                ]
+            [
+                ['text' => 'فروشگاه ها'],
+                ['text' => 'دسته بندی ها'],
+                ['text' => 'اخبار'],
+                ['text' => 'درباره ما'],
+                ['text' => 'تماس با ما'],
+            ],
 
         ];
 
@@ -58,11 +66,8 @@ class KeyboardMain
 
         $keyboards = [[]];
 
-        foreach ($cities as $i=>$city){
-            $keyboard[]=[
-                ['text'=>$city['name']],
-                ['text'=>$city['name']]
-            ];
+        foreach ($cities as $city){
+            $keyboard[]=['text'=>$city['name']];
 
         }
 
@@ -78,26 +83,17 @@ class KeyboardMain
      */
     public function categories($categories): array
     {
-        $keyboards = [];
-
-        $row=0;
-        $index=1;
+        $keyboards = [[]];
 
         foreach ($categories as $k=>$category){
-            $keyboards[$row][]=['text'=>$this->emojis[$category['name']].' '.$category['name']];
-            if($index % 2 == 0){
-                $row++;
-            }
-            $index++;
+            $keyboards[][]=['text'=>$category['name']];
+
         }
 
+        $keyboards[][] = ['text' => '🔙 بازگشت به منو اصلی'];
 
-        $keyboards[]= [
-              ['text' => '🔙 بازگشت به منو اصلی']
-        ];
 
         return $keyboards;
-
     }
 
 
@@ -115,7 +111,6 @@ class KeyboardMain
         return $keyboard;
     }
 
-
     /**
      * @return array
      */
@@ -123,7 +118,7 @@ class KeyboardMain
     {
         $keyboard = [
             [
-                ['text' => '🛒فروشگاه ها'],
+                ['text' => 'فروشگاه ها'],
                 ['text' => '🔙 بازگشت به منو اصلی'],
             ],
         ];
@@ -160,7 +155,7 @@ class KeyboardMain
             $keyboard[][] = ['text' => $value['bra_Name']];
         }
 
-        $keyboard[][] = ['text' => '🔙 بازگشت به منو اصلی'];
+        $keyboard[][] = ['text' => 'بازگشت به منوی اصلی'];
 
         return $keyboard;
     }
@@ -169,7 +164,7 @@ class KeyboardMain
     {
         $keyboard = [
             [
-                ['text' => '🔙 بازگشت به منو اصلی']
+                ['text' => 'بازگشت به منوی اصلی']
             ],
         ];
 
@@ -178,41 +173,44 @@ class KeyboardMain
 
     public function listCities($cities): array
     {
-
-        $keyboards = [];
-
-        $row=0;
-        $index=1;
-
-        foreach ($cities as $k=>$city){
-            $keyboards[$row][]=['text' =>"📍". $city['name'],"callback_data" => 'getShops-'.$city['id']];
-            if($index % 3 == 0){
-                $row++;
-            }
-            $index++;
+        $main = [];
+        $keyboard = [];
+        foreach ($cities as $key => $city) {
+            array_push($main, ['text' => $city['name'],"callback_data" => 'getShops-'.$city['id']]);
+            $temp = array_slice($main, -1);
+            array_push($keyboard, ($temp));
         }
 
-        return $keyboards;
-
-
-//        $main = [];
-//        $keyboard = [];
-//        foreach ($cities as $key => $city) {
-//            array_push($main, ['text' =>"📍". $city['name'],"callback_data" => 'getShops-'.$city['id']]);
-//            $temp = array_slice($main, -1);
-//            array_push($keyboard, ($temp));
-//        }
-//
-//        return $keyboard;
+        return $keyboard;
     }
 
 
+    public function inlineButtons()
+    {
+        $keyboards =[];
+
+        $keyboards[]=[
+            ['text' =>'r1 btn1',"callback_data" => 'getShops-'],
+            ['text' =>'r1 btn2',"callback_data" => 'getShops-'],
+            ['text' =>'r1 btn3',"callback_data" => 'getShops-'],
+        ];
+
+        $keyboards[]=[
+            ['text' =>'r2 btn1',"callback_data" => 'getShops-'],
+            ['text' =>'r2 btn2',"callback_data" => 'getShops-'],
+            ['text' =>'r2 btn3',"callback_data" => 'getShops-'],
+        ];
+
+
+        return $keyboards;
+
+    }
 
     public function previousStepBottom(): array
     {
         $keyboard = [
             [
-                ['text' => '🔙 بازگشت به منو اصلی'],
+                ['text' => 'گام قبل'],
             ]
         ];
 

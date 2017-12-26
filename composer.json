@@ -4,7 +4,15 @@
         "monolog/monolog": "^1.21",
         "guzzlehttp/guzzle": "^6.2",
         "lcobucci/jwt": "^3.2",
-        "doctrine/orm": "*",
-        "predis/predis": "^1.1"
-    }
+        "predis/predis": "^1.1",
+        "irazasyed/telegram-bot-sdk": "^2.0",
+        "vlucas/phpdotenv": "^2.4",
+        "morilog/jalali": "^2.3",
+        "illuminate/database": "^5.5",
+        "doctrine/dbal": "~2.3"
+    },
+    "classmap": [
+
+        "api/model"
+    ]
 }

@@ -5,6 +5,9 @@
  * Date: 2016-10-29
  * Time: 8:59 AM
  */
+
+date_default_timezone_set("Asia/Tehran");
+
 # composer autoload
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -22,4 +25,5 @@ require __DIR__ . '/../src/dispatcher.php';
 
 # run app
 require __DIR__ . '/../src/run.php';
+
 

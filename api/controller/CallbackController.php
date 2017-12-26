@@ -11,7 +11,6 @@ namespace controller;
 use main\CallbackMain;
 
 
-
 class CallbackController extends MainController
 {
     private function callbackMain(): CallbackMain
@@ -24,12 +23,18 @@ class CallbackController extends MainController
         $request = $this->container->get('io')->getRequest();
 
 
-       $request->callback_query->data;
+        $request->callback_query->data;
 
         $category_id=end(explode('-',$request->callback_query->data));
 
 
         $this->callbackMain()->getShops($category_id);
+    }
+
+
+    public function subscribe()
+    {
+        $this->callbackMain()->subscribe();
     }
 
 

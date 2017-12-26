@@ -36,6 +36,8 @@ class MainMain
         $this->io = $container->get('io');
         $this->request = $this->io->getRequest();
         $this->keyboard = $container->get('keyboard');
+        $this->container->get('capsule');
+
     }
 
     /**
