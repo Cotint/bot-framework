@@ -74,7 +74,7 @@ class IO
             $chatId = $this->request->message->chat->id;
 
 
-        $botToken = "484930502:AAGK7wIOoIpYDUgYzyq7eFRQ1dgO9J-ZKPc";
+        $botToken = "529408472:AAE5HxMLqLyXRyscqsP3PhPJQBp8P0Ypl1Q";
         $web = "https://api.telegram.org/bot" . $botToken;
 
         $apiURL = 'https://api.telegram.org/bot' . $botToken . '/';

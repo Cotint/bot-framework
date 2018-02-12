@@ -190,16 +190,12 @@ class KeyboardMain
         $keyboards =[];
 
         $keyboards[]=[
-            ['text' =>'r1 btn1',"callback_data" => 'getShops-'],
-            ['text' =>'r1 btn2',"callback_data" => 'getShops-'],
-            ['text' =>'r1 btn3',"callback_data" => 'getShops-'],
+            /*[
+                'text' =>'r1 btn1' ,
+                "callback_data" => 'SetYourFunctionWithParameter separated by dash'
+            ]*/
         ];
 
-        $keyboards[]=[
-            ['text' =>'r2 btn1',"callback_data" => 'getShops-'],
-            ['text' =>'r2 btn2',"callback_data" => 'getShops-'],
-            ['text' =>'r2 btn3',"callback_data" => 'getShops-'],
-        ];
 
 
         return $keyboards;

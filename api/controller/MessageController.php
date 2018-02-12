@@ -23,8 +23,11 @@ class MessageController extends MainController
         $this->messageMain()->start();
     }
 
+
     public function messageOther()
     {
         $this->messageMain()->messageOther();
     }
+
+
 }

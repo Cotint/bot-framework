@@ -18,19 +18,6 @@ class CallbackController extends MainController
         return $this->container->get('callbackMain');
     }
 
-    public function getShops()
-    {
-        $request = $this->container->get('io')->getRequest();
-
-
-        $request->callback_query->data;
-
-        $category_id=end(explode('-',$request->callback_query->data));
-
-
-        $this->callbackMain()->getShops($category_id);
-    }
-
 
     public function subscribe()
     {

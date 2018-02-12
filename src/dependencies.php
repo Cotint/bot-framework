@@ -96,9 +96,6 @@ $container->share('pdo', function () use ($setting) {
     }
 });
 
-# userModel
-$container->share('userModel', new \model\UserModel($container));
-$container->share('reserveModel', new \model\ReserveModel($container));
 
 /*Add Your New Models Down Here*/
 

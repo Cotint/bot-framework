@@ -10,21 +10,10 @@ namespace main;
 
 use Doctrine\DBAL\Driver\PDOConnection;
 use Doctrine\DBAL\Driver\PDOStatement;
-use model\UserModel;
 
 
 class CallbackMain extends MainMain
 {
-
-    /**
-     * @return UserModel
-     */
-    private function userModel(): UserModel
-    {
-        return $this->container->get('userModel');
-    }
-
-
 
     public function subscribe()
     {
@@ -53,9 +42,6 @@ class CallbackMain extends MainMain
 
             ]
         ];
-
-
-
 
         $this->io->setResponse($result);
 
