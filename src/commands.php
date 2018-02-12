@@ -12,9 +12,6 @@ $command = [
         '/start' => 'start',
         'درباره ما' => 'about',
         'تماس با ما' => 'contact',
-        'فروشگاه ها' => 'shops',
-        'دسته بندی ها' => 'categories',
-        'اخبار' => 'news',
         '🔙 بازگشت به منو اصلی' => 'home',
         '❗️ راهنما' => 'help',
 
@@ -25,10 +22,7 @@ $command = [
         'addContact' => 'addContact'
     ],
     'callback' => [
-        'game' => 'playGame',
-        'data' => [
-            'subscribe' => 'subscribe',
-        ]
+        ''
     ],
     'inline' => [
         '' => 'gameList',

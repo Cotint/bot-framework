@@ -2,6 +2,7 @@
 
 namespace model;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class History extends Eloquent
@@ -40,7 +41,7 @@ class History extends Eloquent
 
         }
 
-        catch (\Exception $exception){
+        catch (Exception $exception){
             echo 'Message: ' .$exception->getMessage();
         }
     }
