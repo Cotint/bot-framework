@@ -28,7 +28,7 @@ class MessageMain extends MainMain
             'last_name'=>$this->request->message->from->last_name,
         ];
 
-        History::saveUserInfo($data);
+//        History::saveUserInfo($data);
 
         $content = "سلام خوش آمدید ";
         $content .= "\n";
@@ -40,7 +40,7 @@ class MessageMain extends MainMain
         $content .= "\n";
         $content .= "✅  cotint.ir";
         $content .= "📞 021-22035976";
-
+        $content = json_encode($this->request->message->text);
 
         $result = [
             'method' => 'sendMessage',
@@ -48,8 +48,12 @@ class MessageMain extends MainMain
             'text' =>  urlencode($content),
             'parse_mode' => 'HTML',
             'reply_markup' => [
-                'inline_keyboard' => $this->keyboard->inlineButtons(),
+                'inline_keyboard' => $this->keyboard->joinChannelButton(),
             ]
+//            'reply_markup' => [
+//                'keyboard' => $this->keyboard->welcomeButtons(),
+//                'resize_keyboard' => true
+//            ]
         ];
 
         $this->io->setResponse($result);
@@ -57,9 +61,18 @@ class MessageMain extends MainMain
 
     public function messageOther()
     {
-        $chatId = $this->request->message->chat->id;
-        $text = $this->request->message->text;
+        $result = [
+            'method' => 'sendMessage',
+            'chat_id' =>  $this->request->message->chat->id,
+            'text' => json_encode($this->request),
+            'reply_markup' => [
+                'keyboard' => $this->keyboard->welcomeButtons(),
+                'resize_keyboard' => true
+            ]
 
+        ];
+
+        $this->io->setResponse($result);
     }
 
 

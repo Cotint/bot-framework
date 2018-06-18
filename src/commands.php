@@ -22,7 +22,9 @@ $command = [
         'addContact' => 'addContact'
     ],
     'callback' => [
-        ''
+        'data'=>[
+            'joinChanel' => 'joinChanel'
+        ]
     ],
     'inline' => [
         '' => 'gameList',

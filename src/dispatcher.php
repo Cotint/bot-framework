@@ -7,7 +7,8 @@
  */
 
 use League\Container\Container;
-/** @var $setting array*/
+
+/** @var $setting array */
 
 /** @var service\IO $io */
 $io = $container->get('io');
@@ -52,12 +53,29 @@ function message(stdClass $request, stdClass $dispatch, Container $container, ar
 //    $log = $container->get('logger');
 //    $log->addNotice('message', ['text' => $text]);
 
-    $method = $message[$text];
+    $method = $message[getMessageText($text)];
 
     $dispatch->controller = 'MessageController';
     $dispatch->method = $method ?? 'messageOther';
 
     return $dispatch;
+}
+
+/**
+ * @param $text
+ * @return mixed
+ */
+function getMessageText($text)
+{
+    $exploded = explode(' ', $text);
+    if (count($exploded) > 1) {
+        return $exploded[0];
+    }
+    $exploded = explode('=', $text);
+    if (count($exploded) > 1) {
+        return $exploded[0];
+    }
+    return $text;
 }
 
 /**
@@ -78,14 +96,13 @@ function callback(stdClass $request, stdClass $dispatch, Container $container, a
     } elseif ($request->callback_query->data) {
 
         $callbackQueryData = $request->callback_query->data;
-        $method=array_shift(explode('-',$callbackQueryData));
+        $method = array_shift(explode('-', $callbackQueryData));
         $callbackData = $command['callback']['data'];
         $dispatch->method = $callbackData[$method];
     }
 
 
     return $dispatch;
-
 
 
 }
