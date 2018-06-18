@@ -10,11 +10,19 @@ namespace commands;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use http\Exception;
 
 class telegramCommands
 {
+    /**
+     * token variables
+     *
+     * @var array
+     */
     private $tokens = [];
+
+    /**
+     * @var array
+     */
     private $answer;
 
     /**
@@ -24,7 +32,6 @@ class telegramCommands
     {
         $argv = $_SERVER['argv'];
 
-        // strip the application name
         array_shift($argv);
 
         $this->tokens = $argv;
@@ -32,6 +39,10 @@ class telegramCommands
         $this->checkCommand();
     }
 
+    /**
+     * @return int
+     * @internal param $commandType
+     */
     private function switchCommands()
     {
         $commandType = $this->tokens[0];
@@ -68,7 +79,12 @@ class telegramCommands
         }
     }
 
-    private function help($message = null,$type = null)
+    /**
+     * @param null $message
+     * @param null $type
+     * @return int
+     */
+    private function help($message = null, $type = null)
     {
         $this->setAnswer(
             ($message ? "\n ".$type." : " . $message . "\n " : "\n ") .
@@ -79,11 +95,24 @@ class telegramCommands
         return 0;
     }
 
+    /**
+     * checks if there is any commands
+     */
     private function checkCommand()
     {
         $this->tokens[0] ? $this->switchCommands() : $this->help();
     }
 
+    /**
+     * set web hook of given bot token
+     *
+     * @return void
+     * @internal param $url
+     * @internal param $token
+     * @internal param $client
+     * @internal param $response
+     * @internal param $content
+     */
     private function setWebHook()
     {
         $url = $this->tokens[0];
@@ -107,6 +136,15 @@ class telegramCommands
         return;
     }
 
+    /**
+     * get web hook of given bot token
+     *
+     * @return void
+     * @internal param $token
+     * @internal param $client
+     * @internal param $response
+     * @internal param $content
+     */
     private function getWebHook()
     {
         $token = $this->tokens[0];
@@ -129,6 +167,15 @@ class telegramCommands
         return;
     }
 
+    /**
+     * delete web hook of given bot token
+     *
+     * @return void
+     * @internal param $token
+     * @internal param $client
+     * @internal param $response
+     * @internal param $content
+     */
     private function deleteWebHook()
     {
         $token = $this->tokens[0];
@@ -181,18 +228,5 @@ class telegramCommands
     public function getTokens()
     {
         return $this->tokens;
-    }
-
-    public function aa()
-    {
-        echo "Are you sure you want to do this?  Type 'yes' to continue: ";
-        $handle = fopen("php://stdin", "r");
-        $line = fgets($handle);
-        if (trim($line) != 'yes') {
-            echo "ABORTING!\n";
-            exit;
-        }
-        echo "\n";
-        echo "Thank you, continuing...\n";
     }
 }

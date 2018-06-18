@@ -187,19 +187,14 @@ class KeyboardMain
 
     public function inlineButtons()
     {
-        $keyboards =[];
-
         $keyboards[]=[
-            /*[
+            [
                 'text' =>'r1 btn1' ,
                 "callback_data" => 'SetYourFunctionWithParameter separated by dash'
-            ]*/
+            ]
         ];
 
-
-
         return $keyboards;
-
     }
 
     public function previousStepBottom(): array
