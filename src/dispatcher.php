@@ -39,8 +39,9 @@ switch ($request) {
  * @param stdClass $request
  * @param stdClass $dispatch
  * @param Container $container
- * @param array $setting
+ * @param array $command
  * @return stdClass
+ * @internal param array $setting
  */
 function message(stdClass $request, stdClass $dispatch, Container $container, array $command): stdClass
 {
@@ -93,8 +94,9 @@ function callback(stdClass $request, stdClass $dispatch, Container $container, a
  * @param stdClass $request
  * @param stdClass $dispatch
  * @param Container $container
- * @param array $setting
+ * @param array $command
  * @return stdClass
+ * @internal param array $setting
  */
 function inline(stdClass $request, stdClass $dispatch, Container $container, array $command): stdClass
 {

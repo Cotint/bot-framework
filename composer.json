@@ -12,7 +12,9 @@
         "doctrine/dbal": "~2.3"
     },
     "classmap": [
-
         "api/model"
+    ],
+    "files":[
+        "vendor/illuminate/support/helpers.php"
     ]
 }
