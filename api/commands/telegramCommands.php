@@ -89,7 +89,7 @@ class telegramCommands
         $this->setAnswer(
             ($message ? "\n ".$type." : " . $message . "\n " : "\n ") .
             " telegram commands help: \n\n" .
-            "   setWebHook <" . 'token' . "> <" . 'url' . ">   sets given webHook on the given bot token \n" .
+            "   setWebHook <" . 'url' . "> <" . 'token' . ">   sets given webHook on the given bot token \n" .
             "   getWebHook <" . 'token' . ">         gets webHook of the given bot token \n" .
             "   deleteWebHook <" . 'token' . ">      deletes webHook of the given bot token \n\n");
         return 0;

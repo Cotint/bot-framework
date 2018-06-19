@@ -26,7 +26,7 @@ $log->addInfo(json_encode((array)$request));
 $dispatch = new stdClass();
 switch ($request) {
     case isset($request->message):
-        $dispatch = message($request, $dispatch, $container, $command);
+        $dispatch = message($request, $dispatch, $container, $command, $io);
         break;
     case isset($request->callback_query):
         $dispatch = callback($request, $dispatch, $container, $command);
@@ -41,19 +41,18 @@ switch ($request) {
  * @param stdClass $dispatch
  * @param Container $container
  * @param array $command
+ * @param $io
  * @return stdClass
  * @internal param array $setting
  */
-function message(stdClass $request, stdClass $dispatch, Container $container, array $command): stdClass
+function message(stdClass $request, stdClass $dispatch, Container $container, array $command, $io): stdClass
 {
     $text = $request->message->text;
     $message = $command['message'];
 
-    /** @var \Monolog\Logger $log */
-//    $log = $container->get('logger');
-//    $log->addNotice('message', ['text' => $text]);
-
-    $method = $message[getMessageText($text)];
+    $method = $message[$text]
+        ? $message[$text]
+        : $message[getMessageText($text, $io)];
 
     $dispatch->controller = 'MessageController';
     $dispatch->method = $method ?? 'messageOther';
@@ -63,18 +62,32 @@ function message(stdClass $request, stdClass $dispatch, Container $container, ar
 
 /**
  * @param $text
+ * @param $io
  * @return mixed
  */
-function getMessageText($text)
+function getMessageText($text, $io)
 {
-    $exploded = explode(' ', $text);
-    if (count($exploded) > 1) {
-        return $exploded[0];
+    // checks if message has parameter after space
+    $explodedBySpace = explode(' ', $text);
+    if (count($explodedBySpace) > 1) {
+        $text = $explodedBySpace[0];
+        array_shift($explodedBySpace);
+        $io->setParams($explodedBySpace);
+
+        return $text;
     }
-    $exploded = explode('=', $text);
-    if (count($exploded) > 1) {
-        return $exploded[0];
+
+    // checks if message has parameter after `=`
+    $explodedByEqualOperator = explode('=', $text);
+    if (count($explodedByEqualOperator) > 1) {
+        $text = $explodedByEqualOperator[0];
+        array_shift($explodedByEqualOperator);
+        $io->setParams(explode(' ',$explodedByEqualOperator
+            ? $explodedByEqualOperator[0] : ''));
+
+        return $text;
     }
+
     return $text;
 }
 

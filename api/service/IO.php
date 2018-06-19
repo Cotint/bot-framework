@@ -14,6 +14,7 @@ use GuzzleHttp\Client;
 class IO
 {
     public $request;
+    public $params = [];
     public $response = [];
 
     /**
@@ -37,6 +38,22 @@ class IO
     {
         $request = file_get_contents("php://input");
         $this->request = json_decode($request);
+    }
+
+    /**
+     * @return array
+     */
+    public function getParams(): array
+    {
+        return $this->params;
+    }
+
+    /**
+     * @param array $params
+     */
+    public function setParams(array $params)
+    {
+        $this->params = $params;
     }
 
     /**

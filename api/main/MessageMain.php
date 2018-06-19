@@ -40,7 +40,7 @@ class MessageMain extends MainMain
         $content .= "\n";
         $content .= "✅  cotint.ir";
         $content .= "📞 021-22035976";
-        $content = json_encode($this->request->message->text);
+//        $content = json_encode($this->io->getParams());
 
         $result = [
             'method' => 'sendMessage',
