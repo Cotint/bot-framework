@@ -1,0 +1,18 @@
+#!/usr/bin/env php
+<?php
+
+
+use commands\telegramCommands;
+
+foreach (glob("api/commands/*.php") as $filename)
+{
+    include $filename;
+}
+
+require __DIR__.'/vendor/autoload.php';
+
+$input = new telegramCommands();
+
+echo $input->getAnswer()."\n";
+return;
+?>

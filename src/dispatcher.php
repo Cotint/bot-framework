@@ -7,7 +7,8 @@
  */
 
 use League\Container\Container;
-/** @var $setting array*/
+
+/** @var $setting array */
 
 /** @var service\IO $io */
 $io = $container->get('io');
@@ -25,7 +26,7 @@ $log->addInfo(json_encode((array)$request));
 $dispatch = new stdClass();
 switch ($request) {
     case isset($request->message):
-        $dispatch = message($request, $dispatch, $container, $command);
+        $dispatch = message($request, $dispatch, $container, $command, $io);
         break;
     case isset($request->callback_query):
         $dispatch = callback($request, $dispatch, $container, $command);
@@ -39,24 +40,55 @@ switch ($request) {
  * @param stdClass $request
  * @param stdClass $dispatch
  * @param Container $container
- * @param array $setting
+ * @param array $command
+ * @param $io
  * @return stdClass
+ * @internal param array $setting
  */
-function message(stdClass $request, stdClass $dispatch, Container $container, array $command): stdClass
+function message(stdClass $request, stdClass $dispatch, Container $container, array $command, $io): stdClass
 {
     $text = $request->message->text;
     $message = $command['message'];
 
-    /** @var \Monolog\Logger $log */
-//    $log = $container->get('logger');
-//    $log->addNotice('message', ['text' => $text]);
-
-    $method = $message[$text];
+    $method = $message[$text]
+        ? $message[$text]
+        : $message[getMessageText($text, $io)];
 
     $dispatch->controller = 'MessageController';
     $dispatch->method = $method ?? 'messageOther';
 
     return $dispatch;
+}
+
+/**
+ * @param $text
+ * @param $io
+ * @return mixed
+ */
+function getMessageText($text, $io)
+{
+    // checks if message has parameter after space
+    $explodedBySpace = explode(' ', $text);
+    if (count($explodedBySpace) > 1) {
+        $text = $explodedBySpace[0];
+        array_shift($explodedBySpace);
+        $io->setParams($explodedBySpace);
+
+        return $text;
+    }
+
+    // checks if message has parameter after `=`
+    $explodedByEqualOperator = explode('=', $text);
+    if (count($explodedByEqualOperator) > 1) {
+        $text = $explodedByEqualOperator[0];
+        array_shift($explodedByEqualOperator);
+        $io->setParams(explode(' ',$explodedByEqualOperator
+            ? $explodedByEqualOperator[0] : ''));
+
+        return $text;
+    }
+
+    return $text;
 }
 
 /**
@@ -77,7 +109,7 @@ function callback(stdClass $request, stdClass $dispatch, Container $container, a
     } elseif ($request->callback_query->data) {
 
         $callbackQueryData = $request->callback_query->data;
-        $method=array_shift(explode('-',$callbackQueryData));
+        $method = array_shift(explode('-', $callbackQueryData));
         $callbackData = $command['callback']['data'];
         $dispatch->method = $callbackData[$method];
     }
@@ -86,15 +118,15 @@ function callback(stdClass $request, stdClass $dispatch, Container $container, a
     return $dispatch;
 
 
-
 }
 
 /**
  * @param stdClass $request
  * @param stdClass $dispatch
  * @param Container $container
- * @param array $setting
+ * @param array $command
  * @return stdClass
+ * @internal param array $setting
  */
 function inline(stdClass $request, stdClass $dispatch, Container $container, array $command): stdClass
 {

@@ -51,7 +51,6 @@ class KeyboardMain
                 ['text' => 'درباره ما'],
                 ['text' => 'تماس با ما'],
             ],
-
         ];
 
         return $keyboard;
@@ -187,19 +186,26 @@ class KeyboardMain
 
     public function inlineButtons()
     {
-        $keyboards =[];
-
         $keyboards[]=[
-            /*[
+            [
                 'text' =>'r1 btn1' ,
                 "callback_data" => 'SetYourFunctionWithParameter separated by dash'
-            ]*/
+            ]
         ];
 
+        return $keyboards;
+    }
 
+    public function joinChannelButton()
+    {
+        $keyboards[]=[
+            [
+                'text' =>'لطفا ابتدا وارد کانال شوید' ,
+                "callback_data" => 'joinChanel'
+            ]
+        ];
 
         return $keyboards;
-
     }
 
     public function previousStepBottom(): array

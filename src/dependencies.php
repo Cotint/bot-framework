@@ -26,9 +26,9 @@ $container->share('capsule', function (){
     $capsule->addConnection([
         "driver" => "mysql",
         "host" =>"localhost",
-        "database" => "barber",
+        "database" => "member_taker",
         "username" => "root",
-        "password" => "Cotint"
+        "password" => "123"
 
     ]);
 

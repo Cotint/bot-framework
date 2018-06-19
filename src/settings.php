@@ -16,8 +16,8 @@ $setting = [
 
     'pdo' => [
         'servername' => 'localhost',
-        'dbname' => 'cotintgroup',
+        'dbname' => 'member_taker',
         'username' => 'root',
-        'password' => 'root'
+        'password' => '123'
     ],
 ];
